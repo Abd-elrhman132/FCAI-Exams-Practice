@@ -22,7 +22,7 @@ const heroItems = [
     subtitle: "Data Communication",
     icon: "Network" as const,
     iconClassName: "text-blue-400",
-    offsetClassName: "translate-y-8",
+    offsetClassName: "md:translate-y-8",
     floatClassName: "hero-float-b hero-float-delay-1",
   },
   {
@@ -30,7 +30,7 @@ const heroItems = [
     subtitle: "Statistical Analysis",
     icon: "Database" as const,
     iconClassName: "text-emerald-400",
-    offsetClassName: "-translate-y-4",
+    offsetClassName: "",
     floatClassName: "hero-float-b hero-float-delay-2",
   },
   {
@@ -38,7 +38,7 @@ const heroItems = [
     subtitle: "Neural Networks",
     icon: "Brain" as const,
     iconClassName: "text-fuchsia-400",
-    offsetClassName: "translate-y-4",
+    offsetClassName: "md:translate-y-8",
     floatClassName: "hero-float-a hero-float-delay-3",
   },
 ];
@@ -118,8 +118,8 @@ const Index = () => {
       {/* Dynamic Background */}
       <div className="absolute top-0 inset-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
       
-      <div className="hero-orb absolute left-[-8%] top-[-6%] h-[34rem] w-[34rem] rounded-full bg-primary/15 blur-[96px] pointer-events-none" />
-      <div className="hero-orb absolute bottom-[-10%] right-[-8%] h-[30rem] w-[30rem] rounded-full bg-blue-500/15 blur-[96px] pointer-events-none [animation-delay:2s]" />
+      <div className="hero-orb absolute left-[-8%] top-[-6%] h-[34rem] w-[34rem] rounded-full bg-primary/15 blur-[96px] pointer-events-none hidden md:block" />
+      <div className="hero-orb absolute bottom-[-10%] right-[-8%] h-[30rem] w-[30rem] rounded-full bg-blue-500/15 blur-[96px] pointer-events-none [animation-delay:2s] hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* New Hero Section */}

@@ -19,7 +19,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <div className="flex flex-col min-h-screen">
-            <div className="fixed top-6 right-6 z-50">
+            <div className="fixed bottom-6 right-6 z-50">
               <ThemeToggle />
             </div>
             <main className="flex-grow">
