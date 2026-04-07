@@ -13,13 +13,15 @@ const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
   const questionCount = getSubjectQuestions(subject).length;
 
   return (
-    <div
+    <button
+      type="button"
       className={cn(
         "group relative overflow-hidden rounded-3xl border border-border bg-card p-1 transition-all duration-500",
         "hover:border-primary/50 hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-primary/5",
-        "active:scale-[0.98] cursor-pointer flex flex-col h-full"
+        "active:scale-[0.98] cursor-pointer flex flex-col h-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       )}
       onClick={() => onStart(subject)}
+      aria-label={`Start practicing ${subject.name}`}
     >
       {/* Subject Color Accent Glow */}
       <div
@@ -86,7 +88,7 @@ const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

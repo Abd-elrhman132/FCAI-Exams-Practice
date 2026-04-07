@@ -29,7 +29,7 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
 
   return (
     <div className="min-h-screen paper-texture pb-20">
-      <div className="max-w-3xl mx-auto px-4 py-16">
+      <div className="max-w-3xl mx-auto px-4 py-10 sm:py-16">
         {/* Score Header */}
         <div className="text-center mb-12 animate-fade-in relative">
           <div 
@@ -44,13 +44,13 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
           </h2>
           
           <div
-            className="text-8xl md:text-9xl font-heading font-black animate-count-up mb-4 tracking-tighter"
+            className="text-6xl sm:text-8xl md:text-9xl font-heading font-black animate-count-up mb-4 tracking-tighter"
             style={{ color: result.subject.color }}
           >
-            {result.score}<span className="text-4xl opacity-50">%</span>
+            {result.score}<span className="text-3xl sm:text-4xl opacity-50">%</span>
           </div>
           
-          <p className="font-heading text-3xl text-foreground font-bold mb-2">
+          <p className="font-heading text-2xl sm:text-3xl text-foreground font-bold mb-2">
             {msg.text}
           </p>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-muted-foreground text-xs font-bold uppercase tracking-wider">
@@ -65,7 +65,7 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
         </div>
 
         {/* Breakdown Cards */}
-        <div className="grid grid-cols-3 gap-4 mb-10 animate-fade-in">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 animate-fade-in">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center shadow-xl">
             <div className="text-3xl font-black text-success mb-1">{result.correct}</div>
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Correct</div>
@@ -108,7 +108,9 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
         <div className="animate-fade-in">
           <button
             onClick={() => setShowReview((v) => !v)}
-            className="btn-hover-base btn-hover-soft btn-hover-lift group w-full rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg hover:bg-white/10"
+            className="btn-hover-base btn-hover-soft btn-hover-lift group flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-lg hover:bg-white/10"
+            aria-expanded={showReview}
+            aria-controls="results-review-panel"
           >
             <div className="flex items-center gap-3">
               <LucideIcon name="SearchCheck" style={{ color: result.subject.color }} />
@@ -121,7 +123,7 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
           </button>
 
           {showReview && (
-            <div className="mt-6 space-y-6 animate-fade-in">
+            <div id="results-review-panel" className="mt-6 space-y-6 animate-fade-in">
               {result.questions.map((q, i) => (
                 <ReviewItem key={q.id} question={q} answer={result.answers[i]} index={i} />
               ))}

@@ -46,14 +46,14 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 paper-texture relative overflow-hidden">
+    <div className="min-h-screen flex items-start md:items-center justify-center px-4 py-6 sm:py-8 paper-texture relative overflow-hidden">
       {/* Background Accent */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] opacity-10 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] sm:w-[520px] sm:h-[520px] md:w-[600px] md:h-[600px] rounded-full blur-[120px] opacity-10 pointer-events-none"
         style={{ backgroundColor: subject.color }}
       />
 
-      <div className="w-full max-w-lg relative z-10 animate-fade-in">
+      <div className="w-full max-w-xl relative z-10 animate-fade-in">
         <button
           onClick={onBack}
           className="btn-hover-base btn-hover-soft btn-hover-lift group mb-8 flex items-center gap-2 rounded-full px-2 py-1 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground"
@@ -66,21 +66,21 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
           Back to subjects
         </button>
 
-        <div className="bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/10 p-8 md:p-12 shadow-2xl relative overflow-hidden">
+        <div className="bg-card/40 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
           {/* Decorative Header Border */}
           <div
             className="absolute top-0 left-0 w-full h-1.5"
             style={{ backgroundColor: subject.color }}
           />
 
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <div
-              className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl flex items-center justify-center mx-auto mb-5 sm:mb-6 shadow-xl"
               style={{ backgroundColor: `${subject.color}20`, color: subject.color }}
             >
-              <LucideIcon name={subject.icon} size={40} strokeWidth={2} />
+              <LucideIcon name={subject.icon} size={32} strokeWidth={2} />
             </div>
-            <h2 className="font-heading text-3xl font-black text-foreground mb-2">
+            <h2 className="font-heading text-2xl sm:text-3xl font-black text-foreground mb-2">
               {subject.name}
             </h2>
             <p className="text-muted-foreground text-sm font-medium tracking-wide">
@@ -88,7 +88,7 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
             </p>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-8 sm:space-y-10">
             {hasChapters ? (
               <div>
                 <div className="flex items-center gap-2 mb-5">
@@ -159,13 +159,13 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
                   Select Questions
                 </label>
               </div>
-              <div className="flex gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {availableOptions.map((n) => (
                   <button
                     key={`${selectedChapterId ?? "all"}-${n}`}
                     onClick={() => setQuestionCount(n)}
                     className={cn(
-                      "btn-hover-base btn-hover-soft flex-1 rounded-2xl border-2 py-4 text-sm font-black transition-all duration-500",
+                      "btn-hover-base btn-hover-soft rounded-2xl border-2 py-4 text-sm font-black transition-all duration-500",
                       questionCount === n
                         ? "text-white shadow-xl scale-110 z-10"
                         : "bg-white/[0.03] border-white/5 text-muted-foreground hover:border-white/10 hover:bg-white/[0.06] hover:scale-105"
@@ -193,7 +193,7 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
                   Time Budget
                 </label>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {timeOptions.map((opt) => (
                   <button
                     key={opt.label}
@@ -223,7 +223,7 @@ const ExamConfig = ({ subject, onBegin, onBack }: ExamConfigProps) => {
 
             <button
               onClick={() => onBegin(examSubject, questionCount, timeLimit ? timeLimit * 60 : null)}
-              className="btn-hover-base btn-hover-solid btn-hover-lift mt-4 w-full rounded-2xl py-5 text-sm font-black uppercase tracking-[0.3em] shadow-2xl"
+              className="btn-hover-base btn-hover-solid btn-hover-lift mt-2 sm:mt-4 w-full rounded-2xl py-4 sm:py-5 text-sm font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] shadow-2xl"
               style={{ 
                 "--btn-glow": `${subject.color}80`,
                 backgroundColor: subject.color, 

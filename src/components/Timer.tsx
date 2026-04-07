@@ -14,7 +14,7 @@ const Timer = ({ formattedTime, secondsLeft, isRunning }: TimerProps) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 font-body font-bold text-lg tabular-nums px-4 py-2 rounded-xl transition-all duration-500",
+        "flex items-center gap-2 font-body font-bold text-sm sm:text-base lg:text-lg tabular-nums px-3 sm:px-4 py-2 rounded-xl transition-all duration-500 whitespace-nowrap",
         isLow 
           ? "bg-danger/10 text-danger border border-danger/20 animate-pulse" 
           : "bg-white/5 text-foreground border border-white/10"
