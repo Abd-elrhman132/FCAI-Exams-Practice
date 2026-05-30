@@ -1638,6 +1638,1653 @@ const chapters: Chapter[] = [
       },
     ],
   },
+  {
+    id: "cs211-lec6",
+    name: "Lecture 6: Trees",
+    description:
+      "Hierarchical data structures, binary trees, binary search trees (BST), and tree traversals.",
+    questions: [
+      {
+        id: "cs211-lec6-q1",
+        text: "Which of the following is classified as a non-linear data structure?",
+        options: ["Array", "Linked List", "Stack", "Tree"],
+        correctIndex: 3,
+        explanation:
+          "Trees and Graphs are considered non-linear data structures, whereas Arrays, Linked Lists, Stacks, and Queues are linear [1].",
+      },
+      {
+        id: "cs211-lec6-q2",
+        text: "What is the topmost node in a tree called?",
+        options: ["Leaf", "Root", "Parent", "Sibling"],
+        correctIndex: 1,
+        explanation:
+          "The topmost node in a hierarchical tree structure is defined as the root [2].",
+      },
+      {
+        id: "cs211-lec6-q3",
+        text: "How are nodes with no children referred to in a tree?",
+        options: ["Ancestors", "Roots", "Leaves", "Descendants"],
+        correctIndex: 2,
+        explanation: "Nodes that have no children are referred to as leaves [2].",
+      },
+      {
+        id: "cs211-lec6-q4",
+        text: "What is the term used for nodes that share the same parent?",
+        options: ["Ancestors", "Siblings", "Descendants", "Leaves"],
+        correctIndex: 1,
+        explanation:
+          "Nodes that share the exact same parent node are defined as siblings [2].",
+      },
+      {
+        id: "cs211-lec6-q5",
+        text: "How is the degree of a node defined?",
+        options: [
+          "The number of its parents",
+          "The length of the path from the root",
+          "The number of its children",
+          "The maximum height of the tree",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The degree of a node specifically refers to the number of children it possesses [2].",
+      },
+      {
+        id: "cs211-lec6-q6",
+        text: "What is the term for the number of edges that must be traversed to get from one node to another?",
+        options: ["Level", "Degree", "Path length", "Height"],
+        correctIndex: 2,
+        explanation:
+          "The number of edges that must be traversed to move from one node to another is known as the path length [3].",
+      },
+      {
+        id: "cs211-lec6-q7",
+        text: "What does the length of the path from the root to a specific node indicate?",
+        options: [
+          "The node's height",
+          "The node's level or depth",
+          "The node's degree",
+          "The node's number of descendants",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The length of the path from the root down to a given node represents its level or depth [3].",
+      },
+      {
+        id: "cs211-lec6-q8",
+        text: "How is the height of a non-empty tree determined?",
+        options: [
+          "By counting the total number of nodes",
+          "By calculating the maximum level of a node in the tree",
+          "By counting the number of leaves",
+          "By the degree of the root node",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The height of a non-empty tree is defined as the maximum level of any node within that tree [3].",
+      },
+      {
+        id: "cs211-lec6-q9",
+        text: "What is the defined height of an empty tree?",
+        options: ["0", "1", "-1", "Undefined"],
+        correctIndex: 2,
+        explanation:
+          "By definition, the height of an empty tree is represented as -1 [4].",
+      },
+      {
+        id: "cs211-lec6-q10",
+        text: "What is the height of a tree consisting of only a single node?",
+        options: ["-1", "0", "1", "2"],
+        correctIndex: 1,
+        explanation:
+          "A tree consisting of a single node (where the root is also a leaf) has a height of 0 [4].",
+      },
+      {
+        id: "cs211-lec6-q11",
+        text: "What is the maximum possible height of a tree containing N nodes?",
+        options: ["N", "N+1", "N-1", "Log2 N"],
+        correctIndex: 2,
+        explanation:
+          "The maximum possible height for a tree containing exactly N nodes is N-1 [4].",
+      },
+      {
+        id: "cs211-lec6-q12",
+        text: "Which condition strictly defines a binary tree?",
+        options: [
+          "Each node must have exactly two children.",
+          "Nodes have at most two children per node.",
+          "Nodes can have any number of children.",
+          "It must be perfectly balanced.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A binary tree is defined as a tree where every node has at most two children [4].",
+      },
+      {
+        id: "cs211-lec6-q13",
+        text: "A binary tree where all levels are full except possibly the lowest (which is filled from left to right) is known as a:",
+        options: [
+          "Perfect binary tree",
+          "Binary search tree",
+          "Complete binary tree",
+          "Balanced binary tree",
+        ],
+        correctIndex: 2,
+        explanation:
+          "A complete binary tree has all its levels full except the lowest level, which is populated strictly from left to right [4].",
+      },
+      {
+        id: "cs211-lec6-q14",
+        text: "What is the height of a complete binary tree that contains N nodes?",
+        options: ["N-1", "Log2 N", "N/2", "N"],
+        correctIndex: 1,
+        explanation:
+          "The mathematical height of a complete binary tree containing N nodes is Log2 N [5].",
+      },
+      {
+        id: "cs211-lec6-q15",
+        text: "Which of the following conditions must a perfect binary tree satisfy?",
+        options: [
+          "All levels are full and all leaves are at the same level.",
+          "It contains only one child per node.",
+          "The left subtree is always larger than the right.",
+          "Nodes are added exclusively to the right subtree.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "A perfect binary tree requires all levels to be entirely full and all leaves to be situated at the same level [5].",
+      },
+      {
+        id: "cs211-lec6-q16",
+        text: "How many terminal nodes (leaves) exist in a perfect binary tree of height i?",
+        options: ["2^i", "2*i", "2^i - 1", "i^2"],
+        correctIndex: 0,
+        explanation:
+          "For a perfect binary tree with a height of i, the total number of leaves (terminal nodes) is 2^i [5].",
+      },
+      {
+        id: "cs211-lec6-q17",
+        text: "What is the total number of nodes in a perfect binary tree with height i?",
+        options: ["2^i", "2^i - 1", "2^(i+1) - 1", "i^2 + 1"],
+        correctIndex: 2,
+        explanation:
+          "A perfect binary tree with height i contains a total of 2^(i+1) - 1 nodes [6].",
+      },
+      {
+        id: "cs211-lec6-q18",
+        text: "In a Binary Search Tree (BST), what rule applies to the values in a node's left subtree?",
+        options: [
+          "They are greater than the node's value.",
+          "They are greater than or equal to the node's value.",
+          "They are exactly equal to the node's value.",
+          "They are less than the node's value.",
+        ],
+        correctIndex: 3,
+        explanation:
+          "In a binary search tree, all values stored in the left subtree of a given node must be less than that node's value [6].",
+      },
+      {
+        id: "cs211-lec6-q19",
+        text: "In a Binary Search Tree (BST), what rule applies to the values in a node's right subtree?",
+        options: [
+          "They are less than the node's value.",
+          "They are less than or equal to the node's value.",
+          "They are greater than or equal to the node's value.",
+          "They must be perfectly balanced with the left subtree.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "In a binary search tree, all values stored in the right subtree must be greater than or equal to the value stored in the node [6].",
+      },
+      {
+        id: "cs211-lec6-q20",
+        text: "What is the best-case time complexity for searching in a Binary Search Tree (BST)?",
+        options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        correctIndex: 0,
+        explanation:
+          "The best-case complexity is O(1), which occurs when the targeted key is immediately found at the root [7].",
+      },
+      {
+        id: "cs211-lec6-q21",
+        text: "For a balanced Binary Search Tree (BST), what is the average-case time complexity for searching?",
+        options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+        correctIndex: 1,
+        explanation:
+          "Searching through a balanced BST has an average-case mathematical complexity of O(log n) [7].",
+      },
+      {
+        id: "cs211-lec6-q22",
+        text: "What is the worst-case time complexity when searching in a completely unbalanced Binary Search Tree (BST)?",
+        options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        correctIndex: 2,
+        explanation:
+          "When a BST is completely unbalanced (acting much like a linear list), the worst-case search complexity degrades to O(n) [7].",
+      },
+      {
+        id: "cs211-lec6-q23",
+        text: "What happens if a user attempts to insert a duplicate node into a standard Binary Search Tree (BST) according to the lecture's algorithm?",
+        options: [
+          "It is inserted into the left subtree.",
+          "It is inserted into the right subtree.",
+          "The new node is simply discarded.",
+          "An error is thrown, crashing the program.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "During insertion, if the key equals the current node's data, it indicates a duplicate, and the new node is simply discarded [8].",
+      },
+      {
+        id: "cs211-lec6-q24",
+        text: "When deleting a leaf node from a Binary Search Tree (Case 1), what is the appropriate procedure?",
+        options: [
+          "The rightmost node in the left subtree replaces it.",
+          "The parent's pointer is set to null and the node is disposed of.",
+          "The tree's root replaces the leaf.",
+          "The leaf is swapped with its sibling.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "To delete a leaf node, the parent's specific pointer to that leaf is set to null, and the node is then deleted to free space [9].",
+      },
+      {
+        id: "cs211-lec6-q25",
+        text: "When deleting a node that has exactly one child from a BST (Case 2), how is the tree structured afterward?",
+        options: [
+          "The parent's pointer is reset to point to the node's child.",
+          "The parent's pointer is set to null.",
+          "The single child is deleted along with the parent.",
+          "A new root node is created.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "In Case 2 (one child), the parent’s pointer is updated and reset to bypass the deleted node and point directly to its child [9].",
+      },
+      {
+        id: "cs211-lec6-q26",
+        text: "Which strategy is used to delete a BST node that has two children (Case 3)?",
+        options: [
+          "Setting both the parent's left and right pointers to null.",
+          "Deleting the entire left subtree.",
+          "Replacing the node entirely with a new root.",
+          "Copying the key from the rightmost node in the left subtree (predecessor) or leftmost in the right subtree.",
+        ],
+        correctIndex: 3,
+        explanation:
+          "For nodes with two children, the value is replaced by copying the key from its predecessor (rightmost in the left subtree) or successor (leftmost in the right subtree), and then that predecessor/successor is removed [10].",
+      },
+      {
+        id: "cs211-lec6-q27",
+        text: "How does a breadth-first traversal visit the nodes of a tree?",
+        options: [
+          "Going as deep as possible and then backtracking.",
+          "Randomly visiting nodes.",
+          "Starting from the lowest or highest level and moving level by level.",
+          "Visiting all leaves before visiting the root.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Breadth-first traversal involves visiting each node starting from the lowest or highest level and systematically moving level by level [11].",
+      },
+      {
+        id: "cs211-lec6-q28",
+        text: "Which data structure is typically used to implement a breadth-first tree traversal?",
+        options: ["Stack", "Queue", "Array", "Graph"],
+        correctIndex: 1,
+        explanation:
+          "A breadth-first traversal can be efficiently implemented using a queue data structure to hold nodes as they are discovered [11].",
+      },
+      {
+        id: "cs211-lec6-q29",
+        text: "In a depth-first traversal, what ordering sequence defines a Preorder traversal?",
+        options: [
+          "LVR (Left, Visit, Right)",
+          "LRV (Left, Right, Visit)",
+          "VLR (Visit, Left, Right)",
+          "RVL (Right, Visit, Left)",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Preorder traversal follows the sequence VLR, meaning it Visits the node, traverses the Left subtree, then traverses the Right subtree [12].",
+      },
+      {
+        id: "cs211-lec6-q30",
+        text: "In a depth-first traversal, what ordering sequence defines an Inorder traversal?",
+        options: [
+          "VLR (Visit, Left, Right)",
+          "LVR (Left, Visit, Right)",
+          "LRV (Left, Right, Visit)",
+          "VRL (Visit, Right, Left)",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Inorder traversal follows the sequence LVR, meaning it traverses the Left subtree, Visits the node, and then traverses the Right subtree [12].",
+      },
+    ],
+  },
+  {
+    id: "cs211-lec7",
+    name: "Lecture 7: AVL Trees",
+    description: "Self-balancing binary search trees and rotation operations.",
+    questions: [
+      {
+        id: "cs211-lec7-q1",
+        text: "What are the two arguments presented in favor of trees over linked lists?",
+        options: [
+          "They use less memory and have smaller nodes.",
+          "They represent hierarchical structures well and offer much faster search processes.",
+          "They allow O(1) insertion time and delete time.",
+          "They are perfectly balanced by default.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Two arguments were presented in favor of trees: they are well suited to represent hierarchical structures, and the search process is much faster using trees instead of linked lists.",
+      },
+      {
+        id: "cs211-lec7-q2",
+        text: "What is a major disadvantage of an ordinary binary search tree mentioned in the text?",
+        options: [
+          "Its search process is slower than a linked list.",
+          "It cannot store duplicate values.",
+          "Its height can be as large as n-1.",
+          "It requires continuous restructuring.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The disadvantage of a binary search tree is that its height can be as large as n-1.",
+      },
+      {
+        id: "cs211-lec7-q3",
+        text: "In the worst case, what is the time complexity of insertion and deletion in an ordinary binary search tree?",
+        options: ["O(1)", "O(log n)", "O(n log n)", "O(n)"],
+        correctIndex: 3,
+        explanation:
+          "Insertion and deletion and many other operations can be O(n) in the worst case for a binary search tree.",
+      },
+      {
+        id: "cs211-lec7-q4",
+        text: "When is a binary tree considered 'balanced'?",
+        options: [
+          "When all leaves are exactly on the same level.",
+          "When the difference in height of both subtrees of any node in the tree is either zero or one.",
+          "When the number of nodes in the left and right subtrees is equal.",
+          "When the tree is perfectly symmetrical.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A binary tree is balanced if the difference in height of both subtrees of any node in the tree is either zero or one.",
+      },
+      {
+        id: "cs211-lec7-q5",
+        text: "What condition must be met for a binary tree to be considered 'perfectly balanced'?",
+        options: [
+          "It must be balanced and all leaves are to be found on one level.",
+          "Every node must have exactly two children.",
+          "The balance factor of the root must be exactly 0.",
+          "It must have a height of O(log n) with no empty subtrees.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "A binary tree is considered perfectly balanced if it is balanced and all leaves are to be found on one level.",
+      },
+      {
+        id: "cs211-lec7-q6",
+        text: "What is the primary goal regarding the height of a Binary Search Tree (BST) when using balanced trees?",
+        options: [
+          "To keep the height O(1).",
+          "To keep the height exactly equal to the number of nodes.",
+          "To keep the height O(log n).",
+          "To keep the height O(n).",
+        ],
+        correctIndex: 2,
+        explanation: "Our goal is to keep the height of the BST O(log n).",
+      },
+      {
+        id: "cs211-lec7-q7",
+        text: "What technique is used to maintain a balanced tree?",
+        options: [
+          "Preventing the insertion of elements that would unbalance it.",
+          "Continuously restructuring the tree when new elements arrive that cause imbalance.",
+          "Deleting the root and rebuilding the tree from scratch.",
+          "Converting the tree into a linked list temporarily.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The technique is to continuously restructure the tree when new elements arrive that cause imbalance in the tree, so we always keep the tree balanced.",
+      },
+      {
+        id: "cs211-lec7-q8",
+        text: "Which of the following are examples of balanced trees?",
+        options: [
+          "Spanning tree and B-tree",
+          "AVL tree and red-black tree",
+          "Min-heap and Max-heap",
+          "Binary search tree and linked list",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Examples of balanced trees are AVL tree and red-black tree.",
+      },
+      {
+        id: "cs211-lec7-q9",
+        text: "What does an AVL tree do after an insertion or deletion to maintain balance?",
+        options: [
+          "It globally recalculates all nodes.",
+          "It locally changes the tree to rebalance it.",
+          "It ignores the imbalance until it reaches a depth of n-1.",
+          "It transforms into a red-black tree.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "AVL is a self balancing BST, locally change the tree to rebalance it after an insertion or deletion.",
+      },
+      {
+        id: "cs211-lec7-q10",
+        text: "Who proposed the classical method for AVL trees?",
+        options: [
+          "Alan Turing and Von Neumann",
+          "Adel’son-Vel’skii and Landis",
+          "Dijkstra and Prim",
+          "Kruskal and Bellman",
+        ],
+        correctIndex: 1,
+        explanation:
+          "AVL is a classical method proposed by Adel’son-Vel’skii and Landis.",
+      },
+      {
+        id: "cs211-lec7-q11",
+        text: "In an AVL tree, what is the maximum allowed difference between the height of the left and right subtrees of every node?",
+        options: ["Zero", "One", "Two", "Three"],
+        correctIndex: 1,
+        explanation:
+          "An AVL tree is one in which the height of the left and right subtrees of every node differ by at most one.",
+      },
+      {
+        id: "cs211-lec7-q12",
+        text: "What is the time complexity for basic operations in an AVL Tree?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        correctIndex: 2,
+        explanation:
+          "AVL Tree Complexity is O(log n) for the basic operations.",
+      },
+      {
+        id: "cs211-lec7-q13",
+        text: "How is the balance factor of a node calculated in an AVL tree?",
+        options: [
+          "Height of left subtree minus height of right subtree.",
+          "Number of right children minus number of left children.",
+          "Height of the right subtree minus the height of the left subtree.",
+          "Depth of node minus height of tree.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Balance factor of any node is the height of the right subtree minus the height of the left subtree.",
+      },
+      {
+        id: "cs211-lec7-q14",
+        text: "When must an AVL tree be rebalanced?",
+        options: [
+          "When the absolute value of the balance factor becomes greater than 1.",
+          "When the balance factor becomes exactly 1.",
+          "When the absolute value of the balance factor is less than 1.",
+          "When a node has no children.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "If |balance factor| becomes > 1, then the tree has to be rebalanced.",
+      },
+      {
+        id: "cs211-lec7-q15",
+        text: "What is the first step when inserting a new key into an AVL tree?",
+        options: [
+          "Perform a rotation at the root.",
+          "Calculate the balance factor of all nodes.",
+          "Insert the new key as a new leaf just as in ordinary binary search tree.",
+          "Delete the largest node to make room.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "First, insert the new key as a new leaf just as in ordinary binary search tree.",
+      },
+      {
+        id: "cs211-lec7-q16",
+        text: "After inserting a new leaf in an AVL tree, what path must be traced to check for balance?",
+        options: [
+          "From the root to the new leaf.",
+          "From the new leaf towards the root.",
+          "From the left-most node to the right-most node.",
+          "From the root down all subtrees.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Then trace the path from the new leaf towards the root.",
+      },
+      {
+        id: "cs211-lec7-q17",
+        text: "During insertion, if a node 'x' is checked and the heights of left(x) and right(x) differ by at most 1, what is the immediate next step?",
+        options: [
+          "Restructure the tree by rotation.",
+          "Proceed to parent(x).",
+          "Stop the insertion process entirely.",
+          "Delete node x.",
+        ],
+        correctIndex: 1,
+        explanation: "If yes, proceed to parent(x).",
+      },
+      {
+        id: "cs211-lec7-q18",
+        text: "If a rotation is performed at node 'x' during an AVL insertion, how many additional rotations are needed at the ancestors of 'x'?",
+        options: [
+          "One additional rotation.",
+          "Rotations up to the root.",
+          "No rotations are needed at any ancestor of x.",
+          "It depends on the height of the tree.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "For insertion, once we perform a rotation at a node x, we won’t need to perform any rotation at any ancestor of x.",
+      },
+      {
+        id: "cs211-lec7-q19",
+        text: "How many situations can cause an AVL tree to become out of balance?",
+        options: ["Two", "Three", "Four", "Five"],
+        correctIndex: 2,
+        explanation:
+          "An AVL tree can become out of balance in four situations.",
+      },
+      {
+        id: "cs211-lec7-q20",
+        text: "Which condition corresponds to an 'RR' situation that causes imbalance?",
+        options: [
+          "Inserting a node in the right subtree of the left child.",
+          "Inserting a node in the right subtree of the right child.",
+          "Inserting a node in the left subtree of the right child.",
+          "Inserting a node in the left subtree of the left child.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Inserting a node in the right subtree of the right child corresponds to an RR situation.",
+      },
+      {
+        id: "cs211-lec7-q21",
+        text: "Which condition corresponds to an 'RL' situation that causes imbalance?",
+        options: [
+          "Inserting a node in the right subtree of the left child.",
+          "Inserting a node in the left subtree of the left child.",
+          "Inserting a node in the left subtree of the right child.",
+          "Inserting a node in the right subtree of the right child.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Inserting a node in the left subtree of the right child corresponds to an RL situation.",
+      },
+      {
+        id: "cs211-lec7-q22",
+        text: "Which condition corresponds to an 'LL' situation that causes imbalance?",
+        options: [
+          "Inserting a node in the left subtree of the left child.",
+          "Inserting a node in the right subtree of the left child.",
+          "Inserting a node in the left subtree of the right child.",
+          "Inserting a node in the right subtree of the right child.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Inserting a node in the left subtree of the left child corresponds to an LL situation.",
+      },
+      {
+        id: "cs211-lec7-q23",
+        text: "Which condition corresponds to an 'LR' situation that causes imbalance?",
+        options: [
+          "Inserting a node in the left subtree of the left child.",
+          "Inserting a node in the right subtree of the left child.",
+          "Inserting a node in the left subtree of the right child.",
+          "Inserting a node in the right subtree of the right child.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Inserting a node in the right subtree of the left child corresponds to an LR situation.",
+      },
+      {
+        id: "cs211-lec7-q24",
+        text: "What action is taken to transform the tree and restore the AVL tree property?",
+        options: ["Re-hashing", "Rotation", "Duplication", "Level-order traversal"],
+        correctIndex: 1,
+        explanation:
+          "Transform the tree to restore the AVL tree property is done by Rotation.",
+      },
+      {
+        id: "cs211-lec7-q25",
+        text: "What are the two types of rotations mentioned for AVL trees?",
+        options: [
+          "Forward rotations and backward rotations.",
+          "Inner rotations and outer rotations.",
+          "Single rotations and double rotations.",
+          "Binary rotations and unified rotations.",
+        ],
+        correctIndex: 2,
+        explanation: "Two types of rotations: single rotations and double rotations.",
+      },
+      {
+        id: "cs211-lec7-q26",
+        text: "What is the time complexity of rotation operations designed to restore balance in an AVL tree?",
+        options: ["O(n)", "O(1)", "O(log n)", "O(n log n)"],
+        correctIndex: 1,
+        explanation:
+          "Rotations are designed to restore balance in O(1) time while ensuring the overall time complexity remains O(log n).",
+      },
+      {
+        id: "cs211-lec7-q27",
+        text: "An 'RL Rotation' is a double rotation composed of which single rotations?",
+        options: [
+          "LL rotation followed by RR rotation.",
+          "RR rotation followed by LL rotation.",
+          "Two consecutive LL rotations.",
+          "Two consecutive RR rotations.",
+        ],
+        correctIndex: 0,
+        explanation: "RL Rotation = LL rotation + RR rotation.",
+      },
+      {
+        id: "cs211-lec7-q28",
+        text: "An 'LR Rotation' is a double rotation composed of which single rotations?",
+        options: [
+          "LL rotation followed by RR rotation.",
+          "RR rotation followed by LL rotation.",
+          "Two RR rotations.",
+          "Two LL rotations.",
+        ],
+        correctIndex: 1,
+        explanation: "LR Rotation = RR rotation + LL rotation.",
+      },
+      {
+        id: "cs211-lec7-q29",
+        text: "During an 'RL Rotation', where is the LL rotation performed first?",
+        options: [
+          "On the full tree.",
+          "On the subtree.",
+          "On the root node exclusively.",
+          "On the newly inserted leaf node.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In an RL rotation, LL rotation is performed on subtree and then RR rotation is performed on full tree.",
+      },
+      {
+        id: "cs211-lec7-q30",
+        text: "In the provided AVL Balancing Example, inserting nodes 'H', 'I', and 'J' in that sequence triggers which type of rotation?",
+        options: ["LL Rotation", "LR Rotation", "RR Rotation", "RL Rotation"],
+        correctIndex: 2,
+        explanation: "Inserting H, I, J results in an RR Rotation to balance the tree.",
+      },
+    ],
+  },
+  {
+    id: "cs211-lec8",
+    name: "Lecture 8: Heap Trees and Heap Sort",
+    description: "Binary heaps, max-heaps, min-heaps, and the heapsort algorithm.",
+    questions: [
+      {
+        id: "cs211-lec8-q1",
+        text: "What type of tree structure defines a heap?",
+        options: [
+          "A complete binary tree",
+          "A binary search tree",
+          "An AVL tree",
+          "A B-tree",
+        ],
+        correctIndex: 0,
+        explanation:
+          "A heap is a complete binary tree where all levels are full, except possibly the last one, which is filled from left to right.",
+      },
+      {
+        id: "cs211-lec8-q2",
+        text: "What defines the heap property for a Max Heap?",
+        options: [
+          "For any node x, Parent(x) <= x",
+          "For any node x, Parent(x) == x",
+          "For any node x, Parent(x) >= x",
+          "The root is the minimum element",
+        ],
+        correctIndex: 2,
+        explanation:
+          "For a Max Heap, the heap property states that for any node x, the parent of x must be greater than or equal to x.",
+      },
+      {
+        id: "cs211-lec8-q3",
+        text: "In a Min Heap, what is the required relationship between a node and its parent?",
+        options: [
+          "Parent(x) >= x",
+          "Parent(x) <= x",
+          "Parent(x) == x",
+          "Parent(x) > x",
+        ],
+        correctIndex: 1,
+        explanation:
+          "For a Min Heap, the heap property states that for any node x, the parent of x must be less than or equal to x.",
+      },
+      {
+        id: "cs211-lec8-q4",
+        text: "Where is the maximum element located in a Max Heap?",
+        options: [
+          "At the last leaf node",
+          "At the rightmost child",
+          "At the root",
+          "At the leftmost child",
+        ],
+        correctIndex: 2,
+        explanation: "For a Max heap, the root is always the maximum element of the heap.",
+      },
+      {
+        id: "cs211-lec8-q5",
+        text: "If a heap is stored in an array A, what is the index of the root?",
+        options: ["A", "A", "A[n]", "A[n-1]"],
+        correctIndex: 1,
+        explanation:
+          "When representing a heap as an array, the root of the tree is stored at index A.",
+      },
+      {
+        id: "cs211-lec8-q6",
+        text: "For a node at index i in an array representation of a heap, what is the formula to find its left child?",
+        options: ["A[2i + 2]", "A[(i-1)/2]", "A[2i]", "A[2i + 1]"],
+        correctIndex: 3,
+        explanation: "The left child of a node at index i is found at A[2i + 1].",
+      },
+      {
+        id: "cs211-lec8-q7",
+        text: "For a node at index i in an array representation of a heap, what is the formula to find its right child?",
+        options: ["A[2i + 1]", "A[2i + 2]", "A[(i-1)/2]", "A[i + 2]"],
+        correctIndex: 1,
+        explanation: "The right child of a node at index i is found at A[2i + 2].",
+      },
+      {
+        id: "cs211-lec8-q8",
+        text: "For a node at index i, what formula gives the index of its parent?",
+        options: ["A[2i + 1]", "A[i / 2]", "A[(i-1) / 2]", "A[2i - 1]"],
+        correctIndex: 2,
+        explanation:
+          "The parent of a node at index i is calculated using the formula A[(i-1)/2].",
+      },
+      {
+        id: "cs211-lec8-q9",
+        text: "In an array of length n representing a heap, which indices contain the leaf nodes?",
+        options: [
+          "A[0 .. (n/2)]",
+          "A[(n/2) .. (n-1)]",
+          "A[1 .. n]",
+          "A[(n/4) .. (n/2)]",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The elements in the subarray A[(n/2) .. (n-1)] are the leaves of the heap.",
+      },
+      {
+        id: "cs211-lec8-q10",
+        text: "Where are new nodes inserted when adding to a heap tree?",
+        options: [
+          "At the root",
+          "At the top level from right to left",
+          "At the bottom level from left to right",
+          "At the bottom level from right to left",
+        ],
+        correctIndex: 2,
+        explanation:
+          "New nodes are always inserted at the bottom level of the heap from left to right.",
+      },
+      {
+        id: "cs211-lec8-q11",
+        text: "From where are nodes removed when deleting from a heap tree?",
+        options: [
+          "From the root only",
+          "From the bottom level, right to left",
+          "From the bottom level, left to right",
+          "From any random leaf node",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Nodes are removed from the bottom level of the heap from right to left.",
+      },
+      {
+        id: "cs211-lec8-q12",
+        text: "What is the main purpose of the MAX-HEAPIFY operation?",
+        options: [
+          "To sort an array in place",
+          "To insert a new node into the heap",
+          "To maintain or restore the max-heap property",
+          "To create a max-heap from an unordered array",
+        ],
+        correctIndex: 2,
+        explanation:
+          "MAX-HEAPIFY is the operation used to maintain and restore the max-heap property.",
+      },
+      {
+        id: "cs211-lec8-q13",
+        text: "What must be true about the left and right subtrees of a node 'i' before calling MAX-HEAPIFY on it?",
+        options: [
+          "They must be empty",
+          "They must violate the heap property",
+          "They must be max-heaps",
+          "They must contain only leaf nodes",
+        ],
+        correctIndex: 2,
+        explanation:
+          "MAX-HEAPIFY supposes that the Left and Right subtrees of node i are already max-heaps.",
+      },
+      {
+        id: "cs211-lec8-q14",
+        text: "What is the running time of the MAX-HEAPIFY operation?",
+        options: ["O(1)", "O(n)", "O(n lg n)", "O(lg n)"],
+        correctIndex: 3,
+        explanation:
+          "The running time of MAX-HEAPIFY is O(lg n), which can also be written in terms of the heap's height as O(h).",
+      },
+      {
+        id: "cs211-lec8-q15",
+        text: "During MAX-HEAPIFY, if a node is smaller than its children, what is the first step to eliminate the violation?",
+        options: [
+          "Exchange it with its parent",
+          "Exchange it with the larger child",
+          "Exchange it with the smaller child",
+          "Delete the node",
+        ],
+        correctIndex: 1,
+        explanation:
+          "To eliminate the violation in MAX-HEAPIFY, the node is exchanged with its larger child before moving down the tree.",
+      },
+      {
+        id: "cs211-lec8-q16",
+        text: "Which operation is responsible for creating a max-heap from an unordered array?",
+        options: ["MAX-HEAPIFY", "HEAPSORT", "EXTRACT-MAX", "BUILD-MAX-HEAP"],
+        correctIndex: 3,
+        explanation:
+          "The operation used to create a max-heap from an unordered array is BUILD-MAX-HEAP.",
+      },
+      {
+        id: "cs211-lec8-q17",
+        text: "In the BUILD-MAX-HEAP algorithm, what is the range of the loop that calls MAX-HEAPIFY?",
+        options: [
+          "From 0 up to n/2-1",
+          "From n-1 down to 0",
+          "From floor(n/2 - 1) down to 0",
+          "From 1 up to n",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The BUILD-MAX-HEAP algorithm loops for 'i' starting from floor(n/2 - 1) down to 0, applying MAX-HEAPIFY.",
+      },
+      {
+        id: "cs211-lec8-q18",
+        text: "What is the running time of the BUILD-MAX-HEAP operation?",
+        options: ["O(lg n)", "O(n)", "O(n lg n)", "O(n^2)"],
+        correctIndex: 1,
+        explanation:
+          "The running time of BUILD-MAX-HEAP is O(n), as the cost of HEAPIFY on a node is proportional to its height.",
+      },
+      {
+        id: "cs211-lec8-q19",
+        text: "What is the first step in the Heapsort algorithm?",
+        options: [
+          "Swap the root with the last element",
+          "Call MAX-HEAPIFY on the root",
+          "Decrease the heap size",
+          "Build a max-heap from the array",
+        ],
+        correctIndex: 3,
+        explanation: "The first step of Heapsort is to build a max-heap from the given array.",
+      },
+      {
+        id: "cs211-lec8-q20",
+        text: "During Heapsort, after swapping the root with the last element in the array, what is the next step?",
+        options: [
+          "Call BUILD-MAX-HEAP again",
+          "Increase the heap size",
+          "Discard the last node by decreasing the heap size",
+          "Return the sorted array",
+        ],
+        correctIndex: 2,
+        explanation:
+          "After swapping the root with the last element, Heapsort \"discards\" this last node by decreasing the heap size.",
+      },
+      {
+        id: "cs211-lec8-q21",
+        text: "In Heapsort, which function is called on the new root after the heap size is decreased?",
+        options: ["BUILD-MAX-HEAP", "MAX-HEAPIFY", "EXTRACT-MAX", "INSERT"],
+        correctIndex: 1,
+        explanation:
+          "After the root is swapped and the heap size decreased, Heapsort calls MAX-HEAPIFY on the new root.",
+      },
+      {
+        id: "cs211-lec8-q22",
+        text: "What is the worst-case running time of the Heapsort algorithm?",
+        options: ["O(n^2)", "O(n)", "O(n * log n)", "O(log n)"],
+        correctIndex: 2,
+        explanation:
+          "The comparison of sorting algorithms shows that Heapsort has a worst-case running time of O(n * log n).",
+      },
+      {
+        id: "cs211-lec8-q23",
+        text: "How does the worst-case running time of Heapsort compare to that of Quicksort?",
+        options: [
+          "Heapsort is O(n^2) and Quicksort is O(n * log n)",
+          "Both are O(n * log n)",
+          "Heapsort is O(n * log n) and Quicksort is O(n^2)",
+          "Both are O(n^2)",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Heapsort has a worst-case of n * log n, whereas Quicksort has a worst-case of n^2.",
+      },
+      {
+        id: "cs211-lec8-q24",
+        text: "Which data structure provides an excellent way to implement a priority queue?",
+        options: ["A linked list", "A stack", "A heap", "A hash table"],
+        correctIndex: 2,
+        explanation: "A heap is an excellent way to implement a priority queue.",
+      },
+      {
+        id: "cs211-lec8-q25",
+        text: "Because a heap is a perfectly balanced tree, reaching a leaf requires how many searches?",
+        options: ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+        correctIndex: 1,
+        explanation:
+          "Because a heap is a perfectly balanced tree, reaching a leaf requires O(log n) searches.",
+      },
+      {
+        id: "cs211-lec8-q26",
+        text: "What does the EXTRACT-MAX operation do in a max-priority queue?",
+        options: [
+          "Returns the largest element without removing it",
+          "Inserts a new maximum element into the heap",
+          "Removes and returns the element with the largest key",
+          "Increases the key of the maximum element",
+        ],
+        correctIndex: 2,
+        explanation:
+          "EXTRACT-MAX(H) removes and returns the element of H with the largest key.",
+      },
+      {
+        id: "cs211-lec8-q27",
+        text: "What is the first step when executing the EXTRACT-MAX operation?",
+        options: [
+          "Call MAX-HEAPIFY",
+          "Decrease the size of the heap by 1",
+          "Exchange the root element with the last element",
+          "Delete the root completely",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The first step of EXTRACT-MAX is to exchange the root element with the last element.",
+      },
+      {
+        id: "cs211-lec8-q28",
+        text: "What is the running time of the HEAP-EXTRACT-MAX operation?",
+        options: ["O(1)", "O(n)", "O(lg n)", "O(n lg n)"],
+        correctIndex: 2,
+        explanation: "The algorithm for HEAP-EXTRACT-MAX operates in O(lg n) time.",
+      },
+      {
+        id: "cs211-lec8-q29",
+        text: "In the INCREASE-KEY operation, how is the max-heap property restored if it is violated after increasing a key?",
+        options: [
+          "By calling BUILD-MAX-HEAP",
+          "By traversing a path toward the root and exchanging with the parent",
+          "By swapping the node with the last element",
+          "By applying MAX-HEAPIFY on the node's children",
+        ],
+        correctIndex: 1,
+        explanation:
+          "If the max-heap property does not hold in INCREASE-KEY, it traverses a path toward the root to find the proper place for the newly increased key, exchanging with the parent.",
+      },
+      {
+        id: "cs211-lec8-q30",
+        text: "During the INSERT operation in a max-heap, what initial key value is given to the newly expanded element before setting its correct value?",
+        options: ["0", "The maximum value in the heap", "-∞", "+∞"],
+        correctIndex: 2,
+        explanation:
+          "The INSERT operation starts by expanding the max-heap with a new element whose key is -∞, and then calls HEAP-INCREASE-KEY.",
+      },
+    ],
+  },
+  {
+    id: "cs211-lec9",
+    name: "Lecture 9: Graphs",
+    description: "Graph terminology, representations, and traversal algorithms.",
+    questions: [
+      {
+        id: "cs211-lec9-q1",
+        text: "Which of the following best describes the relationship representation in a graph compared to a tree?",
+        options: [
+          "Graphs are 1:n structures.",
+          "Graphs are restricted to parent-child relations.",
+          "Graphs are n:n structures.",
+          "Trees can represent relations between any two nodes directly.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Graphs are generalizations of trees that are not restricted to parent-child relations and act as n:n data structures.",
+      },
+      {
+        id: "cs211-lec9-q2",
+        text: "What does a simple graph NOT contain?",
+        options: [
+          "Vertices and edges",
+          "Directed edges and weights",
+          "Multiple edges between the same pair of vertices and self-loops",
+          "Connected components",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Simple graph properties include having no multiple edges between the same pair of vertices and no self-loops.",
+      },
+      {
+        id: "cs211-lec9-q3",
+        text: "A graph in which two vertices can be joined by multiple edges but without self-loops is called a:",
+        options: ["Simple graph", "Multigraph", "Pseudograph", "Complete graph"],
+        correctIndex: 1,
+        explanation:
+          "A multigraph allows multiple edges between the same pair of vertices but contains no self-loops.",
+      },
+      {
+        id: "cs211-lec9-q4",
+        text: "Which type of graph allows both multiple edges between the same vertices and self-loops?",
+        options: ["Simple graph", "Directed graph", "Multigraph", "Pseudograph"],
+        correctIndex: 3,
+        explanation:
+          "A pseudograph is a multigraph with the condition vi ≠ vj removed, allowing both multiple edges and self-loops.",
+      },
+      {
+        id: "cs211-lec9-q5",
+        text: "In graph terminology, what is a circuit?",
+        options: [
+          "A path where no edges are repeated and the start and end vertices are the same.",
+          "A path where all vertices are different.",
+          "A graph with no cycles.",
+          "A path that passes through a vertex only once.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "If the starting vertex equals the ending vertex (v1 = vn) and no edges are repeated, then the path is called a circuit.",
+      },
+      {
+        id: "cs211-lec9-q6",
+        text: "What is the main difference between a circuit and a cycle?",
+        options: [
+          "Every cycle is a circuit, but not every circuit is a cycle.",
+          "Every circuit is a cycle, but not every cycle is a circuit.",
+          "A cycle cannot have repeating edges, but a circuit can.",
+          "There is no difference.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "If all vertices in a circuit are different, then it’s called a cycle, meaning every cycle is a circuit, but not every circuit is a cycle.",
+      },
+      {
+        id: "cs211-lec9-q7",
+        text: "What does DAG stand for in graph theory?",
+        options: [
+          "Directed Adjacent Graph",
+          "Directed Acyclic Graph",
+          "Disconnected Acyclic Graph",
+          "Disconnected Adjacent Graph",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A Directed Acyclic Graph (DAG) is a type of directed graph having no cycles.",
+      },
+      {
+        id: "cs211-lec9-q8",
+        text: "If the degree of a vertex v is 0 (deg(v) = 0), what is it called?",
+        options: [
+          "Complete vertex",
+          "Adjacent vertex",
+          "Isolated vertex",
+          "Incident vertex",
+        ],
+        correctIndex: 2,
+        explanation:
+          "If deg(v) = 0, meaning there are no edges incident with v, then v is an isolated vertex.",
+      },
+      {
+        id: "cs211-lec9-q9",
+        text: "A graph where there is an edge between each pair of distinct vertices is known as a:",
+        options: [
+          "Connected graph",
+          "Complete graph",
+          "Directed graph",
+          "Bipartite graph",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A complete graph has an edge between each pair of distinct vertices.",
+      },
+      {
+        id: "cs211-lec9-q10",
+        text: "The space complexity of an Adjacency Matrix for a graph with N vertices is:",
+        options: ["O(N)", "O(N + |E|)", "O(N^2)", "O(log N)"],
+        correctIndex: 2,
+        explanation: "The space complexity for storing an Adjacency Matrix is O(N^2).",
+      },
+      {
+        id: "cs211-lec9-q11",
+        text: "The space complexity of an Adjacency List for a graph with N vertices and |E| edges is:",
+        options: ["O(N^2)", "O(N + |E|)", "O(N * |E|)", "O(|E|^2)"],
+        correctIndex: 1,
+        explanation:
+          "The space complexity for an Adjacency List is O(N x Dmax) or O(N + |E|).",
+      },
+      {
+        id: "cs211-lec9-q12",
+        text: "In an Adjacency Matrix, what is the time complexity to find if two nodes are connected?",
+        options: ["O(1)", "O(N)", "O(V + E)", "O(log N)"],
+        correctIndex: 0,
+        explanation:
+          "Finding if two nodes are connected in an Adjacency Matrix takes O(1) time complexity.",
+      },
+      {
+        id: "cs211-lec9-q13",
+        text: "What property holds true for the adjacency matrix of an undirected graph?",
+        options: [
+          "It is always sparse.",
+          "It is symmetric across the diagonal.",
+          "All diagonal elements are 1.",
+          "It contains negative values.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Adjacency matrix of an undirected graph is symmetric across the diagonal.",
+      },
+      {
+        id: "cs211-lec9-q14",
+        text: "An incidence matrix for a graph G = (V, E) has the dimensions:",
+        options: ["|V| x |V|", "|E| x |E|", "|V| x |E|", "|V+E| x 1"],
+        correctIndex: 2,
+        explanation: "An incidence matrix for a graph G = (V,E) is a |V| x |E| matrix.",
+      },
+      {
+        id: "cs211-lec9-q15",
+        text: "Why cannot simple traversal algorithms used for trees be applied directly to graphs?",
+        options: [
+          "Graphs are always directed.",
+          "Graphs cannot have weights.",
+          "Graphs may have cycles resulting in infinite loops.",
+          "Trees have more vertices than graphs.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Unlike trees, a graph may have cycles, so tree traversal algorithms would result in infinite loops.",
+      },
+      {
+        id: "cs211-lec9-q16",
+        text: "What is the time complexity of the Depth-First Search (DFS) algorithm?",
+        options: ["O(V)", "O(E)", "O(V * E)", "O(V + E)"],
+        correctIndex: 3,
+        explanation:
+          "DFS time complexity is O(V + E) since it visits each vertex once and explores its adjacency list.",
+      },
+      {
+        id: "cs211-lec9-q17",
+        text: "What is the time complexity of Breadth-First Search (BFS)?",
+        options: ["O(V + E)", "O(V^2)", "O(E log V)", "O(V log E)"],
+        correctIndex: 0,
+        explanation: "The BFS Algorithm operates with a time complexity of O(V + E).",
+      },
+      {
+        id: "cs211-lec9-q18",
+        text: "Which algorithm finds an optimal sequence of choices to reach a certain goal state with the least time or effort?",
+        options: [
+          "Hopcroft and Tarjan Algorithm",
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Dijkstra’s Algorithm",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Dijkstra's Algorithm is a shortest path algorithm designed to find an optimal sequence of choices to reach a goal state with the least effort.",
+      },
+      {
+        id: "cs211-lec9-q19",
+        text: "What is the total time complexity of Dijkstra’s Algorithm when using a Simple Array?",
+        options: ["O(E log V)", "O(V^2)", "O(V + E)", "O(log V)"],
+        correctIndex: 1,
+        explanation:
+          "When using a Simple Array, searching for the minimum distance for all vertices yields a total complexity of O(V^2).",
+      },
+      {
+        id: "cs211-lec9-q20",
+        text: "What is the total time complexity of Dijkstra’s Algorithm when using a Min Heap (Priority Queue)?",
+        options: ["O(V^2)", "O(E log V)", "O(V + E)", "O(V^3)"],
+        correctIndex: 1,
+        explanation:
+          "Using a Min Heap (Priority Queue), the extract-min and decrease-key operations yield a total complexity of approximately O(E log V).",
+      },
+      {
+        id: "cs211-lec9-q21",
+        text: "In an Adjacency List, what is the time complexity to find the neighbors of a node?",
+        options: ["O(1)", "O(N)", "O(Dmax)", "O(N^2)"],
+        correctIndex: 2,
+        explanation:
+          "Finding neighbors in an adjacency list takes O(Dmax) time complexity, where Dmax is the Maximum Degree.",
+      },
+      {
+        id: "cs211-lec9-q22",
+        text: "An edge connecting two vertices is said to be ________ with them.",
+        options: ["Adjacent", "Incident", "Isolated", "Complete"],
+        correctIndex: 1,
+        explanation: "An edge connecting to vertices is incident with them.",
+      },
+      {
+        id: "cs211-lec9-q23",
+        text: "A graph is considered connected if:",
+        options: [
+          "It has no cycles.",
+          "It has no self-loops.",
+          "There is an edge between every pair of vertices.",
+          "There is a path from any vertex to any other vertex in the graph.",
+        ],
+        correctIndex: 3,
+        explanation:
+          "A graph G is connected if there is a path from any vertex to any other vertex in the graph.",
+      },
+      {
+        id: "cs211-lec9-q24",
+        text: "When modeling connectivity in a computer network using graphs, what do the vertices and edges represent?",
+        options: [
+          "Vertices represent distances and edges represent network connections.",
+          "Vertices represent computers and edges represent network connections.",
+          "Vertices represent network connections and edges represent computers.",
+          "Only directed graphs can represent computer networks.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In network modeling, vertices represent computers and edges represent network connections between them.",
+      },
+      {
+        id: "cs211-lec9-q25",
+        text: "During Depth-First Graph Traversal, what happens if the current vertex has no adjacent vertex or all adjacent vertices are visited?",
+        options: [
+          "The algorithm terminates immediately.",
+          "Backtrack to the predecessor of the vertex.",
+          "Restart from an isolated vertex.",
+          "Switch to Breadth-First Traversal.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "If a vertex has no adjacent vertex or all of its adjacent vertices are visited, the DFS algorithm backtracks to the predecessor of that vertex.",
+      },
+      {
+        id: "cs211-lec9-q26",
+        text: "What happens in DFS if we backtrack to the first node and there are still unvisited vertices?",
+        options: [
+          "It means the graph has cycles.",
+          "Pick another unvisited vertex and start over.",
+          "Terminate the algorithm.",
+          "Remove the unvisited vertices.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "If there are still unvisited vertices upon returning to the start node (indicating a disconnected graph), DFS will pick another unvisited vertex and start over.",
+      },
+      {
+        id: "cs211-lec9-q27",
+        text: "Who developed the Depth-first search algorithm mentioned in the lecture?",
+        options: ["Dijkstra", "Hopcroft and Tarjan", "Bellman and Ford", "Prim and Kruskal"],
+        correctIndex: 1,
+        explanation:
+          "The Depth-first search algorithm was developed by Hopcroft and Tarjan.",
+      },
+      {
+        id: "cs211-lec9-q28",
+        text: "Which of the following is an application of graphs but NOT necessarily a shortest path application?",
+        options: [
+          "Finding the shortest road from a city to another on Google Maps.",
+          "Directing a data packet between two computers.",
+          "Finding an acceptable order for finishing subtasks in a complex activity.",
+          "Routing a phone call between two mobile phones.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Finding an acceptable order for finishing subtasks is an application of graphs, whereas finding routes, maps, and directing data packets directly rely on shortest path algorithms.",
+      },
+      {
+        id: "cs211-lec9-q29",
+        text: "A graph whose edges are directed from one node 'i' to another node 'j', with no edge from 'j' to 'i' on that same connection, is a:",
+        options: ["Weighted graph", "Multigraph", "Directed graph (digraph)", "Pseudograph"],
+        correctIndex: 2,
+        explanation:
+          "A directed graph (digraph) is a graph whose edges are directed from one node i to another one j and there is no edge from j to i.",
+      },
+      {
+        id: "cs211-lec9-q30",
+        text: "What defines a simple path in a graph?",
+        options: [
+          "It must start and end at the same vertex.",
+          "It passes through a vertex only once.",
+          "It contains multiple edges between the same vertices.",
+          "It visits every edge in the graph.",
+        ],
+        correctIndex: 1,
+        explanation: "A simple path is defined as a path that passes through a vertex only once.",
+      },
+    ],
+  },
+  {
+    id: "cs211-lec10",
+    name: "Lecture 10: Hashing",
+    description: "Hash functions, hash tables, and collision resolution techniques.",
+    questions: [
+      {
+        id: "cs211-lec10-q1",
+        text: "What is the time complexity of a sequential search algorithm?",
+        options: ["O(1)", "O(log2n)", "O(n)", "O(n^2)"],
+        correctIndex: 2,
+        explanation:
+          "Sequential search searches the list by comparing the target element with list elements, resulting in a time complexity of O(n).",
+      },
+      {
+        id: "cs211-lec10-q2",
+        text: "What is a prerequisite for using a binary search algorithm?",
+        options: [
+          "The array must be empty",
+          "The array must be sorted",
+          "The array must contain only integers",
+          "The array must have an even number of elements",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Binary search has a time complexity of O(log2n) and requires a sorted array.",
+      },
+      {
+        id: "cs211-lec10-q3",
+        text: "If a search algorithm has an order less than log2n, what characteristic must it possess?",
+        options: [
+          "It must be comparison-based",
+          "It cannot be comparison-based",
+          "It must use a linked list",
+          "It requires a sorted array",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Devising a search algorithm with order less than log2n means it cannot be comparison-based.",
+      },
+      {
+        id: "cs211-lec10-q4",
+        text: "In the context of hashing, what is the array structure where data is saved called?",
+        options: ["Binary Tree", "Linked List", "Hash Table", "Data Array"],
+        correctIndex: 2,
+        explanation:
+          "Data is saved in an array structure called a Hash Table to be able to insert and retrieve data efficiently.",
+      },
+      {
+        id: "cs211-lec10-q5",
+        text: "What is the field of a record that determines its place in a hash table called?",
+        options: ["Index", "Key", "Hash", "Pointer"],
+        correctIndex: 1,
+        explanation:
+          "The place of each record in the table depends on a chosen field of that record called the Key.",
+      },
+      {
+        id: "cs211-lec10-q6",
+        text: "What is the role of a hash function?",
+        options: [
+          "To sort the data in the array",
+          "To map each key into a number in the range from 0 to TableSize - 1",
+          "To resolve collisions automatically",
+          "To compress the size of the array",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Each key is mapped into some number in the range from 0 to TableSize - 1, and this mapping process is called a hash function.",
+      },
+      {
+        id: "cs211-lec10-q7",
+        text: "What occurs when a hashing function generates the same index value for two different keys?",
+        options: ["Truncation", "Folding", "Chaining", "Collision"],
+        correctIndex: 3,
+        explanation:
+          "If a hashing function generates the same value twice this is called a Collision.",
+      },
+      {
+        id: "cs211-lec10-q8",
+        text: "Which of the following is NOT listed as a property of a good hash function?",
+        options: [
+          "It should minimize collisions",
+          "It must always use linked lists",
+          "It should be efficiently computable",
+          "It must return a number from 0 to table-size",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Properties of good hash functions include returning a number from 0 to table-size, being efficiently computable, and minimizing collisions.",
+      },
+      {
+        id: "cs211-lec10-q9",
+        text: "Which hash function method ignores part of the key and uses the remaining part as the index?",
+        options: ["Truncation", "Folding", "Modular Arithmetic", "Chaining"],
+        correctIndex: 0,
+        explanation:
+          "Truncation is a method where you ignore part of the key and use the remaining part directly as the index.",
+      },
+      {
+        id: "cs211-lec10-q10",
+        text: "What is a disadvantage of the Truncation hashing method?",
+        options: [
+          "It is computationally very slow",
+          "It requires complex multiplication",
+          "It often fails to distribute keys evenly through the table",
+          "It causes primary clustering",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Truncation is a very fast method, but it often fails to distribute the keys evenly through the table.",
+      },
+      {
+        id: "cs211-lec10-q11",
+        text: "Which hash function method partitions the key into several parts and combines them using addition or multiplication?",
+        options: ["Modular Arithmetic", "Folding", "Truncation", "Probing"],
+        correctIndex: 1,
+        explanation:
+          "Folding partitions the key into several parts and combines the parts in a convenient way (often using addition or multiplication) to obtain the index.",
+      },
+      {
+        id: "cs211-lec10-q12",
+        text: "Why does the Folding method often achieve a better spread of indices than Truncation?",
+        options: [
+          "Because it ignores the middle digits",
+          "Because it is easier to compute",
+          "Because all information in the key can affect the value of the function",
+          "Because it uses primary clustering",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Since all information in the key can affect the value of the function, folding often achieves a better spread of indices than does truncation by itself.",
+      },
+      {
+        id: "cs211-lec10-q13",
+        text: "If a hash function is defined as h(key) = Key % TableSize, which method is being used?",
+        options: ["Folding", "Truncation", "Modular Arithmetic", "Quadratic Probing"],
+        correctIndex: 2,
+        explanation:
+          "Modular Arithmetic defines the index to be the modulo arithmetic of the search value with some fix number, such as h(key) = Key % TableSize.",
+      },
+      {
+        id: "cs211-lec10-q14",
+        text: "Using Modular Arithmetic where TableSize is 701, what is the hash value for the key 580625685?",
+        options: ["1", "2", "3", "4"],
+        correctIndex: 2,
+        explanation:
+          "A typical way to create a hash value is (Key mod TableSize). For 580625685 mod 701, the hash value is 3.",
+      },
+      {
+        id: "cs211-lec10-q15",
+        text: "In the Chaining method for collision resolution, where are elements that hash to the same slot stored?",
+        options: [
+          "In the next available empty spot in the array",
+          "In a linked list",
+          "In a separate hash table",
+          "They overwrite the existing element",
+        ],
+        correctIndex: 1,
+        explanation: "Chaining stores all elements that hash to the same slot in a linked list.",
+      },
+      {
+        id: "cs211-lec10-q16",
+        text: "Where is the pointer to the head of the linked list stored when using the Chaining method?",
+        options: [
+          "In the key itself",
+          "At the end of the array",
+          "In the hash table slot",
+          "In a secondary array",
+        ],
+        correctIndex: 2,
+        explanation:
+          "In Chaining, you store a pointer to the head of the linked list in the hash table slot.",
+      },
+      {
+        id: "cs211-lec10-q17",
+        text: "Which collision resolution strategy stores all elements directly within the hash table itself?",
+        options: ["Chaining", "Open Addressing", "Folding", "Truncation"],
+        correctIndex: 1,
+        explanation: "In Open Addressing, all elements are stored in the hash table itself.",
+      },
+      {
+        id: "cs211-lec10-q18",
+        text: "What is the simplest method of Open Addressing that performs a sequential search for an empty location?",
+        options: ["Quadratic Probing", "Chaining", "Folding", "Linear Probing"],
+        correctIndex: 3,
+        explanation:
+          "Linear Probing is the simplest method to resolve a collision; it starts with the hash address and does a sequential search through the table for an empty location.",
+      },
+      {
+        id: "cs211-lec10-q19",
+        text: "What happens in Linear Probing if the search for an empty location reaches the last index of the table?",
+        options: [
+          "The program throws an error",
+          "The table size is doubled automatically",
+          "The search proceeds to the first location of the table",
+          "The key is discarded",
+        ],
+        correctIndex: 2,
+        explanation:
+          "In Linear Probing, the table should be considered circular, so that when the last location is reached, the search proceeds to the first location of the table.",
+      },
+      {
+        id: "cs211-lec10-q20",
+        text: "What negative effect is commonly caused by Linear Probing when blocks of occupied cells start forming?",
+        options: ["Secondary clustering", "Primary clustering", "Hash fragmentation", "Pointer overhead"],
+        correctIndex: 1,
+        explanation:
+          "In Linear Probing, even if the table is relatively empty, blocks of occupied cells start forming. This effect is known as primary clustering.",
+      },
+      {
+        id: "cs211-lec10-q21",
+        text: "How does primary clustering impact the performance of inserting new keys?",
+        options: [
+          "It requires keys to be linked together in lists",
+          "It forces the hash function to change",
+          "It requires several attempts to resolve collisions for keys hashing into the cluster",
+          "It causes the table to shrink in size",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Primary clustering means that any key that hashes into the cluster will require several attempts to resolve the collision, and then it will add to the cluster.",
+      },
+      {
+        id: "cs211-lec10-q22",
+        text: "Which collision resolution method is specifically used to eliminate the primary clustering problem of linear probing?",
+        options: ["Chaining", "Truncation", "Modular Arithmetic", "Quadratic Probing"],
+        correctIndex: 3,
+        explanation:
+          "Quadratic probing is a collision resolution method that eliminates the primary clustering problem of linear probing.",
+      },
+      {
+        id: "cs211-lec10-q23",
+        text: "What is the popular formula used in Quadratic Probing to resolve collisions (where 'i' is the iteration number)?",
+        options: [
+          "f(key) = hash(key) + i",
+          "f(key) = hash(key) * i",
+          "f(key) = hash(key) + i^2",
+          "f(key) = hash(key) % i",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The popular choice for quadratic probing is f(key) = hash(key) + i^2, where i is the iteration number to resolve the collision.",
+      },
+      {
+        id: "cs211-lec10-q24",
+        text: "If a key maps to index 3 and it is occupied, what index is checked on the 2nd iteration of Quadratic Probing?",
+        options: ["4", "5", "7", "12"],
+        correctIndex: 2,
+        explanation:
+          "For the 2nd iteration of quadratic probing, you try hash(key) + 2^2, which is 3 + 4 = 7.",
+      },
+      {
+        id: "cs211-lec10-q25",
+        text: "When searching for a key using open addressing, when should the sequential search stop?",
+        options: [
+          "When the key is found or you reach an empty spot",
+          "When you have checked exactly 10 slots",
+          "When you reach the end of the array without looping",
+          "Only when the key is found",
+        ],
+        correctIndex: 0,
+        explanation:
+          "When searching for a key, you keep moving forward until you find the key, or you reach an empty spot.",
+      },
+      {
+        id: "cs211-lec10-q26",
+        text: "When deleting a record from a hash table using open addressing, why must the location NOT be left as an ordinary empty spot?",
+        options: [
+          "Because it wastes memory",
+          "Because it could interfere with searches",
+          "Because the compiler will throw an error",
+          "Because it prevents new insertions entirely",
+        ],
+        correctIndex: 1,
+        explanation:
+          "When a record is deleted, the location must not be left as an ordinary 'empty spot' since that could interfere with searches.",
+      },
+      {
+        id: "cs211-lec10-q27",
+        text: "How is a deleted record's spot handled in open addressing to preserve search integrity?",
+        options: [
+          "All subsequent elements are shifted backwards",
+          "The spot is filled with a random number",
+          "The location is marked in a special way",
+          "The table size is reduced by one",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The location must be marked in some special way so that a search can tell that the spot used to have something in it.",
+      },
+      {
+        id: "cs211-lec10-q28",
+        text: "What is the average time complexity for search, insertion, and deletion operations in a hash table?",
+        options: ["O(1)", "O(log2n)", "O(n)", "O(n^2)"],
+        correctIndex: 0,
+        explanation:
+          "Hash tables perform search, insertion, and deletion in O(1) time on average, meaning operations are very fast under normal conditions.",
+      },
+      {
+        id: "cs211-lec10-q29",
+        text: "In the worst case scenario where many collisions occur, how long can search, insertion, and deletion operations take?",
+        options: ["O(1)", "O(log2n)", "O(n)", "O(n^2)"],
+        correctIndex: 2,
+        explanation:
+          "In the worst case where many collisions occur, these operations can take up to O(n) time.",
+      },
+      {
+        id: "cs211-lec10-q30",
+        text: "When designing a hash table, what are the three main things a developer needs to decide on?",
+        options: [
+          "Data type, Table size, Node structure",
+          "Hashing function, Table size, Collision resolution method",
+          "Truncation method, Folding method, Array size",
+          "Linked list type, Hash function, Key type",
+        ],
+        correctIndex: 1,
+        explanation:
+          "When using a hash table, we need to decide on: Hashing function, Table size, and Collision resolution method.",
+      },
+    ],
+  },
+
 ];
 
 export const dataStructures: Subject = {

@@ -1,14 +1,28 @@
 import { Question, ExamAnswer } from "@/types";
 import { cn } from "@/lib/utils";
+import LucideIcon from "./LucideIcon";
 
 interface QuestionCardProps {
   question: Question;
   selectedAnswer: ExamAnswer;
   onSelect: (index: number) => void;
+  questionNumber: number;
+  totalQuestions: number;
+  isFlagged: boolean;
+  onToggleFlag: () => void;
   color: string;
 }
 
-const QuestionCard = ({ question, selectedAnswer, onSelect, color }: QuestionCardProps) => {
+const QuestionCard = ({
+  question,
+  selectedAnswer,
+  onSelect,
+  questionNumber,
+  totalQuestions,
+  isFlagged,
+  onToggleFlag,
+  color,
+}: QuestionCardProps) => {
   const labels = ["A", "B", "C", "D"];
 
   return (
@@ -19,9 +33,32 @@ const QuestionCard = ({ question, selectedAnswer, onSelect, color }: QuestionCar
             className="inline-flex items-center px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-black/20"
             style={{ backgroundColor: color, color: "#fff" }}
           >
-            Question Analysis
+            Question {questionNumber} of {totalQuestions}
           </span>
           <div className="h-px flex-1 bg-white/5" />
+          <button
+            type="button"
+            onClick={onToggleFlag}
+            className={cn(
+              "btn-hover-base btn-hover-soft inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] transition",
+              isFlagged
+                ? "border-transparent text-foreground shadow-lg"
+                : "border-white/10 text-muted-foreground hover:bg-white/5 hover:text-foreground"
+            )}
+            style={
+              isFlagged
+                ? {
+                    backgroundColor: `${color}18`,
+                    color,
+                    boxShadow: `0 12px 26px -18px ${color}`,
+                  }
+                : undefined
+            }
+            aria-pressed={isFlagged}
+          >
+            <LucideIcon name={isFlagged ? "BookmarkCheck" : "Bookmark"} size={14} />
+            Review later
+          </button>
         </div>
         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-[1.2] tracking-tight">
           {question.text}

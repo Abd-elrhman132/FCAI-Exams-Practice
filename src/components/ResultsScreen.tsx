@@ -25,7 +25,27 @@ function getMessage(score: number): FeedbackMessage {
 
 const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
   const [showReview, setShowReview] = useState(false);
+  const [reviewFilter, setReviewFilter] = useState<"all" | "missed" | "skipped" | "correct">(
+    "missed"
+  );
   const msg = getMessage(result.score);
+  const missedCount = result.incorrect + result.skipped;
+  const nextStep =
+    result.score >= 90
+      ? "You are ready for a timed mock run or a different subject."
+      : result.score >= 70
+      ? "Review the missed questions, then retake this chapter with a timer."
+      : result.score >= 50
+      ? "Slow down and study explanations before taking another short drill."
+      : "Start with a quick review session and focus on one chapter at a time.";
+  const reviewItems = result.questions
+    .map((question, index) => ({ question, answer: result.answers[index], index }))
+    .filter(({ question, answer }) => {
+      if (reviewFilter === "all") return true;
+      if (reviewFilter === "skipped") return answer === null;
+      if (reviewFilter === "correct") return answer === question.correctIndex;
+      return answer === null || answer !== question.correctIndex;
+    });
 
   return (
     <div className="min-h-screen paper-texture pb-20">
@@ -80,6 +100,33 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
           </div>
         </div>
 
+        <div className="mb-10 rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-6 shadow-xl animate-fade-in">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-4">
+              <div
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl"
+                style={{ backgroundColor: `${result.subject.color}18`, color: result.subject.color }}
+              >
+                <LucideIcon name="BarChart3" size={24} />
+              </div>
+              <div>
+                <h3 className="font-heading text-xl font-black text-foreground">Study next</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{nextStep}</p>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                setReviewFilter("missed");
+                setShowReview(true);
+              }}
+              className="btn-hover-base btn-hover-soft btn-hover-lift inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-xs font-black uppercase tracking-widest text-foreground hover:bg-white/5"
+            >
+              <LucideIcon name="Filter" size={16} />
+              Review {missedCount} missed
+            </button>
+          </div>
+        </div>
+
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in">
           <button
@@ -124,9 +171,50 @@ const ResultsScreen = ({ result, onRetake, onHome }: ResultsScreenProps) => {
 
           {showReview && (
             <div id="results-review-panel" className="mt-6 space-y-6 animate-fade-in">
-              {result.questions.map((q, i) => (
-                <ReviewItem key={q.id} question={q} answer={result.answers[i]} index={i} />
-              ))}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {[
+                  { id: "missed", label: "Missed", count: missedCount },
+                  { id: "skipped", label: "Skipped", count: result.skipped },
+                  { id: "correct", label: "Correct", count: result.correct },
+                  { id: "all", label: "All", count: result.questions.length },
+                ].map((filter) => {
+                  const isSelected = reviewFilter === filter.id;
+
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      onClick={() => setReviewFilter(filter.id as typeof reviewFilter)}
+                      className={cn(
+                        "btn-hover-base btn-hover-soft rounded-xl border px-3 py-3 text-xs font-black uppercase tracking-widest transition",
+                        isSelected
+                          ? "border-transparent text-white shadow-lg"
+                          : "border-white/10 bg-white/[0.03] text-muted-foreground hover:bg-white/[0.06] hover:text-foreground"
+                      )}
+                      style={
+                        isSelected
+                          ? {
+                              backgroundColor: result.subject.color,
+                              boxShadow: `0 14px 28px -16px ${result.subject.color}`,
+                            }
+                          : undefined
+                      }
+                    >
+                      {filter.label} <span className="opacity-70">({filter.count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {reviewItems.length > 0 ? (
+                reviewItems.map(({ question, answer, index }) => (
+                  <ReviewItem key={question.id} question={question} answer={answer} index={index} />
+                ))
+              ) : (
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-sm font-medium text-muted-foreground">
+                  Nothing in this filter for this attempt.
+                </div>
+              )}
             </div>
           )}
         </div>

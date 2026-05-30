@@ -1,8 +1,9 @@
-import { useState, lazy, Suspense, useEffect } from "react";
+import { useState, lazy, Suspense, useEffect, useMemo } from "react";
 import { Subject, ExamResult } from "@/types";
 import { subjects } from "@/data";
 import SubjectCard from "@/components/SubjectCard";
 import LucideIcon from "@/components/LucideIcon";
+import { getSubjectChapterCount, getSubjectQuestions } from "@/lib/subjectUtils";
 
 const ExamConfig = lazy(() => import("@/components/ExamConfig"));
 const ExamScreen = lazy(() => import("@/components/ExamScreen"));
@@ -65,6 +66,19 @@ const LoadingFallback = () => (
 const Index = () => {
   const [screen, setScreen] = useState<Screen>({ type: "home" });
 
+  const curriculumStats = useMemo(() => {
+    const questionCount = subjects.reduce(
+      (total, subject) => total + getSubjectQuestions(subject).length,
+      0
+    );
+    const chapterCount = subjects.reduce(
+      (total, subject) => total + getSubjectChapterCount(subject),
+      0
+    );
+
+    return { questionCount, chapterCount };
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [screen.type]);
@@ -123,31 +137,28 @@ const Index = () => {
     <div className="min-h-screen paper-texture relative overflow-hidden">
       {/* Dynamic Background */}
       <div className="absolute top-0 inset-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-      
-      <div className="hero-orb absolute left-[-8%] top-[-6%] h-[34rem] w-[34rem] rounded-full bg-primary/15 blur-[96px] pointer-events-none hidden md:block" />
-      <div className="hero-orb absolute bottom-[-10%] right-[-8%] h-[30rem] w-[30rem] rounded-full bg-blue-500/15 blur-[96px] pointer-events-none [animation-delay:2s] hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* New Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-h-[100svh] py-12 sm:py-16 lg:py-20">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-h-[88svh] py-12 sm:py-16 lg:py-20">
           {/* Left Column: Text Content */}
           <div className="flex-1 text-center lg:text-left animate-fade-in">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-accent/10 border border-border mb-6 sm:mb-8 backdrop-blur-xl shadow-2xl">
-              <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_rgba(139,92,246,0.8)] animate-pulse" />
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-accent/10 border border-border mb-6 sm:mb-8 backdrop-blur-xl shadow-xl">
+              <LucideIcon name="Sparkles" size={14} className="text-primary" />
               <span className="text-foreground/70 text-[9px] font-black uppercase tracking-[0.4em]">
-                Advanced Examination Systems
+                Built for FCAI study sessions
               </span>
             </div>
             
             <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-black text-foreground mb-6 sm:mb-8 tracking-tighter leading-[0.95] text-balance">
-              Master Your <br />
+              Practice Exams <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary/60 animate-gradient-x">
-                Academic Legacy
+                Without the Guesswork
               </span>
             </h1>
             
             <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed font-medium text-balance">
-              The premier preparation platform for FCAI students. High-fidelity simulations, real-time analytics, and exhaustive subject coverage.
+              Pick a course, focus on a chapter, and move through questions at your pace. Mark hard items, skip confidently, and review what needs attention after every session.
             </p>
 
             <div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
@@ -158,7 +169,7 @@ const Index = () => {
                 }}
                 className="btn-hover-base btn-hover-solid btn-hover-lift flex items-center gap-3 rounded-2xl bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-xl shadow-primary/25"
               >
-                Explore Subjects
+                Start Practicing
                 <LucideIcon name="ArrowDown" size={18} strokeWidth={3} />
               </button>
               
@@ -185,6 +196,24 @@ const Index = () => {
               <p className="text-xs text-muted-foreground/60 font-bold uppercase tracking-widest text-center lg:text-left">
                 Join 2,000+ Students
               </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0">
+              {[
+                { label: "Subjects", value: subjects.length },
+                { label: "Chapters", value: curriculumStats.chapterCount || "All" },
+                { label: "Questions", value: curriculumStats.questionCount },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-2xl border border-border/70 bg-card/50 px-4 py-3 text-center lg:text-left"
+                >
+                  <div className="text-2xl font-black text-foreground tabular-nums">{stat.value}</div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -223,13 +252,10 @@ const Index = () => {
         </div>
 
         {/* Section Title */}
-        <div id="subjects-grid" className="mb-10 sm:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 animate-fade-in">
+        <div id="subjects-grid" className="mb-10 sm:mb-12 animate-fade-in">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black mb-4">Core Curriculum</h2>
-            <p className="text-muted-foreground font-medium max-w-lg">Select a specialized track to begin your examination simulation. All content is aligned with current academic standards.</p>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-secondary/50 border border-white/5 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            Available Subjects: <span className="text-foreground ml-1">{subjects.length}</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black mb-4">Choose What to Practice</h2>
+            <p className="text-muted-foreground font-medium max-w-lg">Pick a course and start a focused session in a few clicks.</p>
           </div>
         </div>
 

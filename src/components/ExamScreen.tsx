@@ -38,18 +38,23 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
     });
   }, [exam.currentIndex]);
 
+  const timer = useTimer(timeLimit, () => {
+    exam.submit();
+  });
+  const stopTimer = timer.stop;
+
+  useEffect(() => {
+    if (!exam.submitted || !exam.result) return;
+
+    stopTimer();
+    onFinish(exam.result);
+  }, [exam.submitted, exam.result, onFinish, stopTimer]);
+
   const handleSubmit = () => {
     exam.submit();
   };
 
-  const timer = useTimer(timeLimit, () => {
-    exam.submit();
-  });
-
-  // Watch for submission
   if (exam.submitted && exam.result) {
-    timer.stop();
-    onFinish(exam.result);
     return null;
   }
 
@@ -60,6 +65,10 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
       handleSubmit();
     }
   };
+
+  const answeredCount = exam.questions.length - exam.unansweredCount;
+  const progressPercent = Math.round((answeredCount / exam.questions.length) * 100);
+  const isCurrentAnswered = exam.answers[exam.currentIndex] !== null;
 
   return (
     <div className="min-h-screen paper-texture pb-20">
@@ -112,6 +121,10 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
             </div>
 
             <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 order-1 lg:order-2">
+              <div className="hidden sm:flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-muted-foreground">
+                <LucideIcon name="Bookmark" size={14} style={{ color: subject.color }} />
+                {exam.flaggedCount} marked
+              </div>
               {timeLimit !== null && (
                 <Timer formattedTime={timer.formatTime()} secondsLeft={timer.secondsLeft} isRunning={timer.isRunning} />
               )}
@@ -138,13 +151,35 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
           <div className="lg:sticky lg:top-32 bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-sm shadow-xl">
             <div className="flex items-center justify-between mb-4">
               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Progress</p>
-              <span className="text-xs font-bold text-foreground/60">{Math.round((exam.currentIndex / exam.questions.length) * 100)}%</span>
+              <span className="text-xs font-bold text-foreground/60">{progressPercent}% answered</span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 mb-5">
+              <div className="rounded-xl bg-white/[0.04] p-3 text-center">
+                <div className="text-lg font-black tabular-nums text-foreground">{answeredCount}</div>
+                <div className="text-[9px] font-black uppercase tracking-[0.15em] text-muted-foreground">
+                  Answered
+                </div>
+              </div>
+              <div className="rounded-xl bg-white/[0.04] p-3 text-center">
+                <div className="text-lg font-black tabular-nums text-foreground">{exam.unansweredCount}</div>
+                <div className="text-[9px] font-black uppercase tracking-[0.15em] text-muted-foreground">
+                  Left
+                </div>
+              </div>
+              <div className="rounded-xl bg-white/[0.04] p-3 text-center">
+                <div className="text-lg font-black tabular-nums text-foreground">{exam.flaggedCount}</div>
+                <div className="text-[9px] font-black uppercase tracking-[0.15em] text-muted-foreground">
+                  Marked
+                </div>
+              </div>
             </div>
             
             <div className="grid grid-cols-5 min-[480px]:grid-cols-6 sm:grid-cols-8 lg:grid-cols-4 gap-2">
               {exam.questions.map((_, i) => {
                 const isActive = i === exam.currentIndex;
                 const isAnswered = exam.answers[i] !== null;
+                const isFlagged = exam.flaggedQuestions[i];
                 return (
                   <button
                     key={i}
@@ -165,6 +200,15 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
                     }
                   >
                     {i + 1}
+                    {isFlagged && (
+                      <LucideIcon
+                        name="Bookmark"
+                        size={10}
+                        className="absolute -left-0.5 -top-0.5"
+                        fill={isActive ? "#fff" : subject.color}
+                        style={{ color: isActive ? "#fff" : subject.color }}
+                      />
+                    )}
                     {isAnswered && !isActive && (
                       <div 
                         className="absolute top-0 right-0 w-1.5 h-1.5 rounded-full translate-x-1/3 -translate-y-1/3" 
@@ -184,6 +228,10 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
               <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
                 <div className="w-2 h-2 rounded-full opacity-40" style={{ backgroundColor: subject.color }} />
                 <span>Answered</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
+                <LucideIcon name="Bookmark" size={12} style={{ color: subject.color }} />
+                <span>Marked for review</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
                 <div className="w-2 h-2 rounded-full bg-secondary" />
@@ -207,6 +255,10 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
                 question={exam.currentQuestion}
                 selectedAnswer={exam.answers[exam.currentIndex]}
                 onSelect={exam.selectAnswer}
+                questionNumber={exam.currentIndex + 1}
+                totalQuestions={exam.questions.length}
+                isFlagged={exam.flaggedQuestions[exam.currentIndex]}
+                onToggleFlag={exam.toggleFlag}
                 color={subject.color}
               />
             </div>
@@ -239,8 +291,7 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
             ) : (
               <button
                 onClick={exam.next}
-                disabled={exam.answers[exam.currentIndex] === null}
-                className="btn-hover-base btn-hover-solid btn-hover-lift flex items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold shadow-xl disabled:opacity-30 disabled:pointer-events-none w-full sm:w-auto"
+                className="btn-hover-base btn-hover-solid btn-hover-lift flex items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold shadow-xl w-full sm:w-auto"
                 style={{ 
                   "--btn-glow": `${subject.color}80`,
                   backgroundColor: subject.color, 
@@ -248,7 +299,7 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
                   boxShadow: `0 20px 25px -5px ${subject.color}40, 0 10px 10px -5px ${subject.color}40`
                 }}
               >
-                Next
+                {isCurrentAnswered ? "Next" : "Skip for now"}
                 <LucideIcon name="ChevronRight" size={18} strokeWidth={3} />
               </button>
             )}
@@ -272,7 +323,15 @@ const ExamScreen = ({ subject, questionCount, timeLimit, onFinish, onBack }: Exa
             
             <p className="text-muted-foreground text-sm mb-8 text-center leading-relaxed">
               You have <span className="text-warning font-bold">{exam.unansweredCount}</span> unanswered
-              questions. Unanswered questions will be marked as skipped.
+              questions
+              {exam.flaggedCount > 0 ? (
+                <>
+                  {" "}
+                  and <span className="text-warning font-bold">{exam.flaggedCount}</span> marked for
+                  review
+                </>
+              ) : null}
+              . Unanswered questions will be marked as skipped.
             </p>
             
             <div className="flex flex-col gap-3">

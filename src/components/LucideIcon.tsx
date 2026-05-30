@@ -1,18 +1,20 @@
 import {
-  ArrowDown, ArrowLeft, ArrowRight, BookOpen, Bot, Brain, Calculator,
-  Check, ChevronLeft, ChevronRight, CircleAlert, Clock, Cpu, Database,
-  Globe, GraduationCap, Home, Infinity as InfinityIcon, Info, ListChecks, Network,
-  PartyPopper, RefreshCcw, SearchCheck, Shapes, ShieldAlert, Target,
-  Timer, Trophy, X, LucideProps
+  ArrowDown, ArrowLeft, ArrowRight, BarChart3, BookOpen, Bookmark,
+  BookmarkCheck, Bot, Brain, Calculator, Check, ChevronLeft, ChevronRight,
+  CircleAlert, Clock, Cpu, Database, Filter, Globe, GraduationCap, Home,
+  Infinity as InfinityIcon, Info, ListChecks, Network, PartyPopper,
+  RefreshCcw, Search, SearchCheck, Shapes, ShieldAlert, Sparkles, Target,
+  Timer, Trophy, X, Zap, LucideProps
 } from "lucide-react";
 import { IconName } from "@/types";
 
 const iconMap = {
-  ArrowDown, ArrowLeft, ArrowRight, BookOpen, Bot, Brain, Calculator,
-  Check, ChevronLeft, ChevronRight, CircleAlert, Clock, Cpu, Database,
-  Globe, GraduationCap, Home, Infinity: InfinityIcon, Info, ListChecks, Network,
-  PartyPopper, RefreshCcw, SearchCheck, Shapes, ShieldAlert, Target,
-  Timer, Trophy, X
+  ArrowDown, ArrowLeft, ArrowRight, BarChart3, BookOpen, Bookmark,
+  BookmarkCheck, Bot, Brain, Calculator, Check, ChevronLeft, ChevronRight,
+  CircleAlert, Clock, Cpu, Database, Filter, Globe, GraduationCap, Home,
+  Infinity: InfinityIcon, Info, ListChecks, Network, PartyPopper,
+  RefreshCcw, Search, SearchCheck, Shapes, ShieldAlert, Sparkles, Target,
+  Timer, Trophy, X, Zap
 };
 
 interface LucideIconProps extends LucideProps {

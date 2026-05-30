@@ -20,6 +20,9 @@ export function useExam(subject: Subject, questionCount: number) {
   const [answers, setAnswers] = useState<ExamAnswer[]>(
     () => new Array(questions.length).fill(null)
   );
+  const [flaggedQuestions, setFlaggedQuestions] = useState<boolean[]>(
+    () => new Array(questions.length).fill(false)
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
@@ -37,6 +40,14 @@ export function useExam(subject: Subject, questionCount: number) {
 
   const next = useCallback(() => goTo(currentIndex + 1), [currentIndex, goTo]);
   const prev = useCallback(() => goTo(currentIndex - 1), [currentIndex, goTo]);
+
+  const toggleFlag = useCallback(() => {
+    setFlaggedQuestions((prev) => {
+      const next = [...prev];
+      next[currentIndex] = !next[currentIndex];
+      return next;
+    });
+  }, [currentIndex]);
 
   const submit = useCallback(() => setSubmitted(true), []);
 
@@ -60,19 +71,23 @@ export function useExam(subject: Subject, questionCount: number) {
   }, [submitted, questions, answers, subject]);
 
   const unansweredCount = answers.filter((a) => a === null).length;
+  const flaggedCount = flaggedQuestions.filter(Boolean).length;
 
   return {
     questions,
     answers,
+    flaggedQuestions,
     currentIndex,
     submitted,
     selectAnswer,
+    toggleFlag,
     next,
     prev,
     goTo,
     submit,
     result,
     unansweredCount,
+    flaggedCount,
     currentQuestion: questions[currentIndex],
     isFirst: currentIndex === 0,
     isLast: currentIndex === questions.length - 1,
