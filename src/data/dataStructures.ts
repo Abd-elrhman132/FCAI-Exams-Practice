@@ -10,10 +10,10 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec1-q1",
         text: "Which of the following is considered a primitive data type?",
-        options: ["Array", "Linked List", "Boolean", "Stack"],
+        options: ["Array", "Linked List", "bool", "Stack"],
         correctIndex: 2,
         explanation:
-          "The primitive data types include int, double, char, float, and Boolean [1].",
+          "C++ primitive data types include int, double, char, float, and bool [1].",
       },
       {
         id: "cs211-lec1-q2",
@@ -111,7 +111,7 @@ const chapters: Chapter[] = [
           "Arrays",
           "Linked Lists",
           "Contiguous Stacks",
-          "Primitive Booleans",
+          "Primitive bool values",
         ],
         correctIndex: 1,
         explanation:
@@ -203,13 +203,13 @@ const chapters: Chapter[] = [
         text: "Which condition is an absolute requirement for a tree to be classified as a Binary Tree?",
         options: [
           "Cycles must be present to connect the leaves",
-          "Each node can have up to three children",
-          "Each node has one parent, except the root",
+          "Each node can have at most two children",
+          "Each node must have exactly two children",
           "It must be organized contiguously in memory",
         ],
-        correctIndex: 2,
+        correctIndex: 1,
         explanation:
-          "A binary tree must satisfy conditions such as: each node having at most two children, no cycles being allowed, and each node having one parent, except the root [12].",
+          "A binary tree must satisfy conditions such as each node having at most two children, no cycles being allowed, and each node having one parent, except the root [12].",
       },
       {
         id: "cs211-lec1-q19",
@@ -257,9 +257,9 @@ const chapters: Chapter[] = [
           "double[] myList = new double[10];",
           "double myList[10];",
         ],
-        correctIndex: 2,
+        correctIndex: 3,
         explanation:
-          "The proper syntax in most modern languages (like Java or C#) to declare an array variable is double[] myList = new double[10].",
+          "In C++, a fixed-size array of 10 doubles is declared as double myList[10];.",
       },
       {
         id: "cs211-lec2-q3",
@@ -293,7 +293,7 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec2-q6",
         text: "What does the linear search function return if no match is found?",
-        options: ["0", "1", "-1", "null"],
+        options: ["0", "1", "-1", "nullptr"],
         correctIndex: 2,
         explanation: "If no match is found, the linear search returns -1.",
       },
@@ -687,14 +687,14 @@ const chapters: Chapter[] = [
         id: "cs211-ch2-q10",
         text: "What is the correct loop condition shown to traverse a Singly Linked List from head to the end?",
         options: [
-          "for (IntSLLNode *pt = head; pt == 0; pt = pt->next)",
-          "for (IntSLLNode *pt = head; pt != 0; pt = pt->prev)",
-          "for (IntSLLNode pt = head; pt != 0; pt = pt->next)",
-          "for (IntSLLNode pt = 0; pt != head; pt = pt->next)",
+          "for (IntSLLNode *pt = head; pt == nullptr; pt = pt->next)",
+          "for (IntSLLNode *pt = head; pt != nullptr; pt = pt->prev)",
+          "for (IntSLLNode *pt = head; pt != nullptr; pt = pt->next)",
+          "for (IntSLLNode *pt = nullptr; pt != head; pt = pt->next)",
         ],
         correctIndex: 2,
         explanation:
-          "To traverse the list, a pointer is initialized to head and the loop continues as long as pt != 0, incrementing with pt = pt->next.",
+          "To traverse the list, a pointer is initialized to head and the loop continues as long as pt != nullptr, incrementing with pt = pt->next.",
       },
       {
         id: "cs211-ch2-q11",
@@ -732,7 +732,7 @@ const chapters: Chapter[] = [
       },
       {
         id: "cs211-ch2-q14",
-        text: "During Tail Insertion in a Singly Linked List, what must be done if tail == null?",
+        text: "During Tail Insertion in a Singly Linked List, what must be done if tail == nullptr?",
         options: [
           "Set tail->next = newNode",
           "Set head = tail = newNode",
@@ -741,7 +741,7 @@ const chapters: Chapter[] = [
         ],
         correctIndex: 1,
         explanation:
-          "If the tail is null, indicating the list is empty, both the head and tail pointers must be set to the newNode.",
+          "If tail == nullptr, the list is empty, so both the head and tail pointers must be set to newNode.",
       },
       {
         id: "cs211-ch2-q15",
@@ -790,9 +790,9 @@ const chapters: Chapter[] = [
         text: "What happens if you try to delete a node with an element that is not present in the list?",
         options: [
           "The program generates a run-time error",
-          "The head and tail pointers are set to null",
+          "The head and tail pointers are set to nullptr",
           "The last node is arbitrarily deleted",
-          "The function does nothing and exists",
+          "The function does nothing and exits",
         ],
         correctIndex: 3,
         explanation:
@@ -917,7 +917,7 @@ const chapters: Chapter[] = [
         id: "cs211-ch2-q30",
         text: "When inserting a node at the tail of a circular singly linked list, what does the new tail's next pointer point to?",
         options: [
-          "NULL",
+          "nullptr",
           "The new tail itself indefinitely",
           "The node directly previous to the tail",
           "The first node (the head) of the list",
@@ -962,16 +962,16 @@ const chapters: Chapter[] = [
       },
       {
         id: "cs211-lec4-q3",
-        text: "Is the Stack data structure built into C++ and Java by default as a primitive type?",
+        text: "Is a stack a built-in primitive type in C++?",
         options: [
           "Yes, it is a built-in primitive type.",
-          "No, it is an Abstract Data Type (ADT) that must be defined.",
+          "No, it is an Abstract Data Type (ADT); C++ provides std::stack in the standard library.",
           "Yes, but only in C++.",
-          "Yes, but only in Java.",
+          "Yes, but only when using std::stack.",
         ],
         correctIndex: 1,
         explanation:
-          "Stack is an Abstract Data Type (ADT) and is NOT built into C++/JAVA; developers must define them and their behaviors.",
+          "A stack is an Abstract Data Type (ADT), not a C++ primitive type. C++ provides std::stack in the standard library, and developers can also define their own implementation.",
       },
       {
         id: "cs211-lec4-q4",
@@ -1229,7 +1229,7 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec4-q25",
         text: "In the array stack implementation, what does the pop() method return if the stack is empty?",
-        options: ["0", "null", "-1", "an Exception object"],
+        options: ["0", "nullptr", "-1", "an Exception object"],
         correctIndex: 2,
         explanation:
           "If isEmpty() is true, the pop() method outputs 'Stack underflow' and returns -1.",
@@ -1406,10 +1406,10 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec5-q10",
         text: "In the provided ArrayQueue class, what is the data type of the 'myQueue' variable that holds the items?",
-        options: ["int", "int", "bool", "float"],
+        options: ["int", "int*", "bool", "float"],
         correctIndex: 1,
         explanation:
-          "The ArrayQueue class uses a pointer to an integer, 'int myQueue', to represent the array that holds the items [3].",
+          "The ArrayQueue class uses an integer pointer, 'int* myQueue', to represent the array that holds the items [3].",
       },
       {
         id: "cs211-lec5-q11",
@@ -1521,7 +1521,7 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec5-q20",
         text: "What integer value does the 'dequeue' method return if the queue is empty?",
-        options: ["0", "1", "-1", "null"],
+        options: ["0", "1", "-1", "nullptr"],
         correctIndex: 2,
         explanation:
           "The 'dequeue' method returns -1 if the queue is empty [5].",
@@ -1775,10 +1775,10 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec6-q14",
         text: "What is the height of a complete binary tree that contains N nodes?",
-        options: ["N-1", "Log2 N", "N/2", "N"],
+        options: ["N - 1", "floor(log2(N))", "N / 2", "N"],
         correctIndex: 1,
         explanation:
-          "The mathematical height of a complete binary tree containing N nodes is Log2 N [5].",
+          "The height of a complete binary tree containing N nodes is floor(log2(N)) [5].",
       },
       {
         id: "cs211-lec6-q15",
@@ -1828,12 +1828,12 @@ const chapters: Chapter[] = [
         options: [
           "They are less than the node's value.",
           "They are less than or equal to the node's value.",
-          "They are greater than or equal to the node's value.",
+          "They are greater than the node's value.",
           "They must be perfectly balanced with the left subtree.",
         ],
         correctIndex: 2,
         explanation:
-          "In a binary search tree, all values stored in the right subtree must be greater than or equal to the value stored in the node [6].",
+          "In this binary search tree implementation, duplicate values are discarded, so values in the right subtree must be greater than the value stored in the node [6].",
       },
       {
         id: "cs211-lec6-q20",
@@ -1877,20 +1877,20 @@ const chapters: Chapter[] = [
         text: "When deleting a leaf node from a Binary Search Tree (Case 1), what is the appropriate procedure?",
         options: [
           "The rightmost node in the left subtree replaces it.",
-          "The parent's pointer is set to null and the node is disposed of.",
+          "The parent's pointer is set to nullptr and the node is deleted.",
           "The tree's root replaces the leaf.",
           "The leaf is swapped with its sibling.",
         ],
         correctIndex: 1,
         explanation:
-          "To delete a leaf node, the parent's specific pointer to that leaf is set to null, and the node is then deleted to free space [9].",
+          "To delete a leaf node, the parent's specific pointer to that leaf is set to nullptr, and the node is then deleted to free space [9].",
       },
       {
         id: "cs211-lec6-q25",
         text: "When deleting a node that has exactly one child from a BST (Case 2), how is the tree structured afterward?",
         options: [
           "The parent's pointer is reset to point to the node's child.",
-          "The parent's pointer is set to null.",
+          "The parent's pointer is set to nullptr.",
           "The single child is deleted along with the parent.",
           "A new root node is created.",
         ],
@@ -1902,7 +1902,7 @@ const chapters: Chapter[] = [
         id: "cs211-lec6-q26",
         text: "Which strategy is used to delete a BST node that has two children (Case 3)?",
         options: [
-          "Setting both the parent's left and right pointers to null.",
+          "Setting both the parent's left and right pointers to nullptr.",
           "Deleting the entire left subtree.",
           "Replacing the node entirely with a new root.",
           "Copying the key from the rightmost node in the left subtree (predecessor) or leftmost in the right subtree.",
@@ -1917,12 +1917,12 @@ const chapters: Chapter[] = [
         options: [
           "Going as deep as possible and then backtracking.",
           "Randomly visiting nodes.",
-          "Starting from the lowest or highest level and moving level by level.",
+          "Starting at the root and moving level by level.",
           "Visiting all leaves before visiting the root.",
         ],
         correctIndex: 2,
         explanation:
-          "Breadth-first traversal involves visiting each node starting from the lowest or highest level and systematically moving level by level [11].",
+          "Breadth-first traversal visits the root first, then systematically moves through the tree level by level [11].",
       },
       {
         id: "cs211-lec6-q28",
@@ -2375,45 +2375,45 @@ const chapters: Chapter[] = [
       {
         id: "cs211-lec8-q5",
         text: "If a heap is stored in an array A, what is the index of the root?",
-        options: ["A", "A", "A[n]", "A[n-1]"],
-        correctIndex: 1,
+        options: ["A[0]", "A[1]", "A[n]", "A[n - 1]"],
+        correctIndex: 0,
         explanation:
-          "When representing a heap as an array, the root of the tree is stored at index A.",
+          "When representing a heap as a zero-indexed array, the root of the tree is stored at A[0].",
       },
       {
         id: "cs211-lec8-q6",
         text: "For a node at index i in an array representation of a heap, what is the formula to find its left child?",
-        options: ["A[2i + 2]", "A[(i-1)/2]", "A[2i]", "A[2i + 1]"],
+        options: ["A[2 * i + 2]", "A[(i - 1) / 2]", "A[2 * i]", "A[2 * i + 1]"],
         correctIndex: 3,
-        explanation: "The left child of a node at index i is found at A[2i + 1].",
+        explanation: "The left child of a node at index i is found at A[2 * i + 1].",
       },
       {
         id: "cs211-lec8-q7",
         text: "For a node at index i in an array representation of a heap, what is the formula to find its right child?",
-        options: ["A[2i + 1]", "A[2i + 2]", "A[(i-1)/2]", "A[i + 2]"],
+        options: ["A[2 * i + 1]", "A[2 * i + 2]", "A[(i - 1) / 2]", "A[i + 2]"],
         correctIndex: 1,
-        explanation: "The right child of a node at index i is found at A[2i + 2].",
+        explanation: "The right child of a node at index i is found at A[2 * i + 2].",
       },
       {
         id: "cs211-lec8-q8",
         text: "For a node at index i, what formula gives the index of its parent?",
-        options: ["A[2i + 1]", "A[i / 2]", "A[(i-1) / 2]", "A[2i - 1]"],
+        options: ["A[2 * i + 1]", "A[i / 2]", "A[(i - 1) / 2]", "A[2 * i - 1]"],
         correctIndex: 2,
         explanation:
-          "The parent of a node at index i is calculated using the formula A[(i-1)/2].",
+          "The parent of a node at index i is calculated using the C++ integer-division expression A[(i - 1) / 2].",
       },
       {
         id: "cs211-lec8-q9",
-        text: "In an array of length n representing a heap, which indices contain the leaf nodes?",
+        text: "In a zero-indexed array of length n representing a heap, which range of indices contains the leaf nodes?",
         options: [
-          "A[0 .. (n/2)]",
-          "A[(n/2) .. (n-1)]",
-          "A[1 .. n]",
-          "A[(n/4) .. (n/2)]",
+          "0 through n / 2",
+          "n / 2 through n - 1",
+          "1 through n",
+          "n / 4 through n / 2",
         ],
         correctIndex: 1,
         explanation:
-          "The elements in the subarray A[(n/2) .. (n-1)] are the leaves of the heap.",
+          "With zero-based indexing and C++ integer division, the elements from index n / 2 through n - 1 are the leaves of the heap.",
       },
       {
         id: "cs211-lec8-q10",
@@ -2502,12 +2502,12 @@ const chapters: Chapter[] = [
         options: [
           "From 0 up to n/2-1",
           "From n-1 down to 0",
-          "From floor(n/2 - 1) down to 0",
+          "From n / 2 - 1 down to 0",
           "From 1 up to n",
         ],
         correctIndex: 2,
         explanation:
-          "The BUILD-MAX-HEAP algorithm loops for 'i' starting from floor(n/2 - 1) down to 0, applying MAX-HEAPIFY.",
+          "With zero-based indexing and C++ integer division, BUILD-MAX-HEAP loops for 'i' from n / 2 - 1 down to 0, applying MAX-HEAPIFY.",
       },
       {
         id: "cs211-lec8-q18",
@@ -2580,11 +2580,11 @@ const chapters: Chapter[] = [
       },
       {
         id: "cs211-lec8-q25",
-        text: "Because a heap is a perfectly balanced tree, reaching a leaf requires how many searches?",
+        text: "Because a heap is a complete binary tree, reaching a leaf requires how many steps?",
         options: ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
         correctIndex: 1,
         explanation:
-          "Because a heap is a perfectly balanced tree, reaching a leaf requires O(log n) searches.",
+          "Because a heap is a complete binary tree, reaching a leaf requires O(log n) steps.",
       },
       {
         id: "cs211-lec8-q26",
@@ -3047,11 +3047,11 @@ const chapters: Chapter[] = [
           "It should minimize collisions",
           "It must always use linked lists",
           "It should be efficiently computable",
-          "It must return a number from 0 to table-size",
+          "It must return a number from 0 to tableSize - 1",
         ],
         correctIndex: 1,
         explanation:
-          "Properties of good hash functions include returning a number from 0 to table-size, being efficiently computable, and minimizing collisions.",
+          "Properties of good hash functions include returning a number from 0 to tableSize - 1, being efficiently computable, and minimizing collisions.",
       },
       {
         id: "cs211-lec10-q9",
@@ -3097,11 +3097,11 @@ const chapters: Chapter[] = [
       },
       {
         id: "cs211-lec10-q13",
-        text: "If a hash function is defined as h(key) = Key % TableSize, which method is being used?",
+        text: "If a hash index is calculated in C++ as key % tableSize, which method is being used?",
         options: ["Folding", "Truncation", "Modular Arithmetic", "Quadratic Probing"],
         correctIndex: 2,
         explanation:
-          "Modular Arithmetic defines the index to be the modulo arithmetic of the search value with some fix number, such as h(key) = Key % TableSize.",
+          "Modular Arithmetic defines the index using the remainder operator with a fixed table size, such as key % tableSize.",
       },
       {
         id: "cs211-lec10-q14",
@@ -3109,7 +3109,7 @@ const chapters: Chapter[] = [
         options: ["1", "2", "3", "4"],
         correctIndex: 2,
         explanation:
-          "A typical way to create a hash value is (Key mod TableSize). For 580625685 mod 701, the hash value is 3.",
+          "A typical C++ expression for a hash value is key % tableSize. For 580625685 % 701, the hash value is 3.",
       },
       {
         id: "cs211-lec10-q15",
@@ -3195,16 +3195,16 @@ const chapters: Chapter[] = [
       },
       {
         id: "cs211-lec10-q23",
-        text: "What is the popular formula used in Quadratic Probing to resolve collisions (where 'i' is the iteration number)?",
+        text: "Which C++ expression gives the next candidate index during Quadratic Probing (where 'i' is the iteration number)?",
         options: [
-          "f(key) = hash(key) + i",
-          "f(key) = hash(key) * i",
-          "f(key) = hash(key) + i^2",
-          "f(key) = hash(key) % i",
+          "(hash(key) + i) % tableSize",
+          "(hash(key) * i) % tableSize",
+          "(hash(key) + i * i) % tableSize",
+          "hash(key) % i",
         ],
         correctIndex: 2,
         explanation:
-          "The popular choice for quadratic probing is f(key) = hash(key) + i^2, where i is the iteration number to resolve the collision.",
+          "Quadratic probing checks (hash(key) + i * i) % tableSize. In C++, '^' is bitwise XOR, so squaring is written as i * i.",
       },
       {
         id: "cs211-lec10-q24",
@@ -3212,7 +3212,7 @@ const chapters: Chapter[] = [
         options: ["4", "5", "7", "12"],
         correctIndex: 2,
         explanation:
-          "For the 2nd iteration of quadratic probing, you try hash(key) + 2^2, which is 3 + 4 = 7.",
+          "For the 2nd iteration of quadratic probing, the candidate index before any wraparound is 3 + 2 * 2 = 7.",
       },
       {
         id: "cs211-lec10-q25",
