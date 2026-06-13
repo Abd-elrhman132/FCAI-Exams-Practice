@@ -1555,6 +1555,1594 @@ const chapters = [
       },
     ],
   },
+  {
+    id: "networking-chapter-6",
+    name: "Chapter 6: Network Performance and Delays",
+    description: "End-to-End Delay, Transmission Delay, Propagation Delay, and Traffic Intensity.",
+    questions: [
+      {
+        id: "it351-ch6-q1",
+        text: "What are the four distinct components that sum up to the total End-to-End Delay?",
+        options: [
+          "Processing, Routing, Switching, and Forwarding",
+          "Transmission, Propagation, Broadcasting, and Receiving",
+          "Processing, Queuing, Transmission, and Propagation",
+          "Queuing, Forwarding, Switching, and Transmitting",
+        ],
+        correctIndex: 2,
+        explanation:
+          "End-to-End Delay is the total time required for a packet to travel from the source application to the destination application. It is the sum of four distinct components: Processing, Queuing, Transmission, and Propagation.",
+      },
+      {
+        id: "it351-ch6-q2",
+        text: "Which of the following correctly defines Transmission Delay?",
+        options: [
+          "The time required for a single bit to travel the physical distance of the link.",
+          "The time required to push all bits of a packet onto the transmission link.",
+          "The time a packet spends waiting in a buffer inside a router.",
+          "The time a router takes to examine a packet's header.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Transmission Delay is defined as the time required to push all bits of a packet onto the transmission link.",
+      },
+      {
+        id: "it351-ch6-q3",
+        text: "Which of the following correctly defines Propagation Delay?",
+        options: [
+          "The time required for a single bit to travel from one end of the physical link to the other.",
+          "The time required to push all bits of a packet onto the transmission link.",
+          "The maximum theoretical data rate of a link.",
+          "The time taken to check a packet for bit-level errors.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Propagation Delay is the time required for a single bit to travel from one end of the physical link to the other.",
+      },
+      {
+        id: "it351-ch6-q4",
+        text: "What does a router's Processing Delay typically involve?",
+        options: [
+          "Pushing bits onto the physical link.",
+          "Waiting in a buffer until the link is available.",
+          "Examining the packet header, determining the outgoing link, and checking for errors.",
+          "Traveling across the physical medium to the next node.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Inside the router, the Processing Zone examines the header, determines the outgoing link, and checks for errors. This delay is typically very small (microseconds).",
+      },
+      {
+        id: "it351-ch6-q5",
+        text: "Under what circumstance does Queuing Delay occur?",
+        options: [
+          "When the physical distance between two nodes is exceptionally long.",
+          "When packets arrive at a router faster than they can be transmitted, forcing them to wait in a buffer.",
+          "When the packet size exceeds the maximum transmission unit.",
+          "When the router's CPU is checking the packet for errors.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Queuing Delay happens when packets wait in a buffer because they arrive faster than they can be transmitted out of the router.",
+      },
+      {
+        id: "it351-ch6-q6",
+        text: "Which of the following statements about Transmission Delay is true?",
+        options: [
+          "It completely dominates in satellite links.",
+          "It heavily depends on the physical distance between the sender and receiver.",
+          "It does NOT depend on physical distance, only on packet size and link speed.",
+          "It measures the maximum theoretical data rate of a link.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Crucially, Transmission Delay does NOT depend on distance. It depends solely on packet size and the transmission rate (link speed).",
+      },
+      {
+        id: "it351-ch6-q7",
+        text: "Which of the following statements about Propagation Delay is true?",
+        options: [
+          "It depends on the packet size and link speed.",
+          "It does NOT depend on packet size, only on physical distance and signal speed.",
+          "It measures the actual achieved end-to-end data rate.",
+          "It happens only inside a router's buffer.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Crucially, Propagation Delay does NOT depend on packet size. It depends entirely on the physical distance and the propagation speed of the signal.",
+      },
+      {
+        id: "it351-ch6-q8",
+        text: "What is the correct formula to calculate Traffic Intensity (ρ)?",
+        options: [
+          "ρ = (L × a) / R",
+          "ρ = L / R",
+          "ρ = d / s",
+          "ρ = Bandwidth × Propagation Delay",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Traffic Intensity (ρ) is calculated as (L × a) / R, where L is packet size, a is arrival rate, and R is transmission rate.",
+      },
+      {
+        id: "it351-ch6-q9",
+        text: "What happens to the router's queue if the Traffic Intensity (ρ) is strictly less than 1 (ρ < 1)?",
+        options: [
+          "The system drops all packets.",
+          "The queue grows indefinitely.",
+          "The system is stable.",
+          "The transmission rate decreases.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "If ρ < 1, packets are transmitted faster than they arrive on average, meaning the system is stable.",
+      },
+      {
+        id: "it351-ch6-q10",
+        text: "What happens to the router's queue if the Traffic Intensity (ρ) is greater than or equal to 1 (ρ ≥ 1)?",
+        options: [
+          "The system remains perfectly balanced.",
+          "The queue grows indefinitely.",
+          "The packet size shrinks automatically.",
+          "The propagation delay increases.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "If ρ ≥ 1, packets arrive faster than or at the exact same rate they can be transmitted, causing the queue to grow indefinitely.",
+      },
+      {
+        id: "it351-ch6-q11",
+        text: "How is 'Bandwidth' defined in the context of network performance analysis?",
+        options: [
+          "The actual achieved end-to-end data rate.",
+          "The percentage of network capacity used.",
+          "The maximum theoretical data rate of a link.",
+          "The total time it takes for a packet to reach its destination.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Bandwidth is defined as the maximum theoretical data rate of a link.",
+      },
+      {
+        id: "it351-ch6-q12",
+        text: "How is 'Throughput' defined in network performance analysis?",
+        options: [
+          "The actual achieved end-to-end data rate.",
+          "The theoretical maximum data capacity.",
+          "The percentage of network capacity used.",
+          "The distance divided by the speed of light.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Throughput is defined as the actual achieved end-to-end data rate.",
+      },
+      {
+        id: "it351-ch6-q13",
+        text: "What does 'Utilization' measure in network performance?",
+        options: [
+          "How long it takes to push a packet onto the link.",
+          "The actual achieved data rate.",
+          "The percentage of network capacity used.",
+          "The maximum volume of data physically in transit.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Utilization is the percentage of network capacity used.",
+      },
+      {
+        id: "it351-ch6-q14",
+        text: "In a multi-link path, what entirely dictates the maximum end-to-end throughput?",
+        options: [
+          "The fastest link in the path.",
+          "The bottleneck link (the slowest link).",
+          "The sum of all link bandwidths.",
+          "The total physical distance of the path.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In a multi-link path, the maximum end-to-end throughput is dictated entirely by the bottleneck link, which is the slowest link in the path.",
+      },
+      {
+        id: "it351-ch6-q15",
+        text: "What does the Bandwidth-Delay Product (BDP) measure?",
+        options: [
+          "The total delay experienced by a packet across all routers.",
+          "The ratio of lost packets to successfully transmitted packets.",
+          "The maximum volume of data that can be actively traveling on the link at any given moment before the first bit reaches the destination.",
+          "The time it takes for a router to process a queue of packets.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "BDP measures the maximum volume of data that can be actively traveling on the link at any given moment before the first bit reaches the destination.",
+      },
+      {
+        id: "it351-ch6-q16",
+        text: "What is the standard formula for Transmission Delay?",
+        options: [
+          "d / s",
+          "L / R",
+          "(L × a) / R",
+          "Bandwidth × Propagation Delay",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The formula for Transmission Delay is L / R, where L is packet size and R is the transmission rate.",
+      },
+      {
+        id: "it351-ch6-q17",
+        text: "What is the standard formula for Propagation Delay?",
+        options: [
+          "d / s",
+          "L / R",
+          "(L × a) / R",
+          "N × (Transmission + Propagation)",
+        ],
+        correctIndex: 0,
+        explanation:
+          "The formula for Propagation Delay is d / s, where d is the distance and s is the propagation speed.",
+      },
+      {
+        id: "it351-ch6-q18",
+        text: "In a store-and-forward network with N links, assuming no queuing delay, what is the formula for the Total Multi-Link End-to-End Delay?",
+        options: [
+          "Total Delay = Transmission + Propagation + Processing",
+          "Total Delay = N × [Transmission + Propagation + Processing]",
+          "Total Delay = N × [Transmission] + Propagation",
+          "Total Delay = Transmission + (N × Propagation)",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Because a packet must be fully received at each router before being transmitted to the next, the delay repeats N times. The formula is N × [Transmission + Propagation + Processing] + Total Queuing.",
+      },
+      {
+        id: "it351-ch6-q19",
+        text: "When analyzing a satellite link, which type of delay completely dominates the overall delay?",
+        options: [
+          "Processing Delay",
+          "Queuing Delay",
+          "Transmission Delay",
+          "Propagation Delay",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Propagation delay completely dominates in satellite links due to the extreme physical distances involved (e.g., 36,000 km), overshadowing transmission delay.",
+      },
+      {
+        id: "it351-ch6-q20",
+        text: "PROBLEM: Calculate the Transmission Delay for a 5 MB file over a 10 Mbps link.",
+        options: [
+          "0.5 seconds",
+          "2 seconds",
+          "4 seconds",
+          "8 seconds",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Step 1: Convert 5 MB to bits (5 × 8 = 40 Megabits, or 40 × 10^6 bits). Step 2: Transmission Delay = L/R = (40 × 10^6) / (10 × 10^6) = 4 seconds.",
+      },
+      {
+        id: "it351-ch6-q21",
+        text: "PROBLEM: Calculate the Propagation Delay for a 1500 km fiber link. Assume a propagation speed of 2 × 10^8 m/s.",
+        options: [
+          "0.75 milliseconds",
+          "7.5 milliseconds",
+          "75 milliseconds",
+          "7.5 seconds",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Step 1: Convert 1500 km to meters (1,500,000 meters). Step 2: Propagation Delay = d/s = 1,500,000 / (2 × 10^8) = 0.0075 seconds, which is 7.5 milliseconds.",
+      },
+      {
+        id: "it351-ch6-q22",
+        text: "PROBLEM: In a satellite link with a distance of 36,000 km, calculate the propagation delay. Assume a propagation speed of 2 × 10^8 m/s.",
+        options: [
+          "18 milliseconds",
+          "180 milliseconds",
+          "1.8 seconds",
+          "18 seconds",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Step 1: Convert 36,000 km to meters (36,000,000 m). Step 2: Propagation Delay = d/s = 36,000,000 / (2 × 10^8) = 0.18 seconds, which is 180 milliseconds.",
+      },
+      {
+        id: "it351-ch6-q23",
+        text: "PROBLEM: Calculate the Transmission Delay for a 1000-byte packet being sent over a 1 Gbps satellite link.",
+        options: [
+          "1 microsecond",
+          "8 microseconds",
+          "80 microseconds",
+          "8 milliseconds",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Step 1: Convert 1000 bytes to bits (8000 bits). Step 2: Convert 1 Gbps to bps (10^9 bps). Transmission Delay = L/R = 8000 / 10^9 = 0.000008 seconds, which is 8 microseconds.",
+      },
+      {
+        id: "it351-ch6-q24",
+        text: "PROBLEM: Packets of 8000 bits arrive at a rate of 100 packets/sec on a 1 Mbps link. Calculate the Traffic Intensity (ρ) and determine the system's stability.",
+        options: [
+          "ρ = 0.8; The system is stable.",
+          "ρ = 0.8; The queue grows indefinitely.",
+          "ρ = 1.25; The system is stable.",
+          "ρ = 1.25; The queue grows indefinitely.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Traffic Intensity ρ = (L × a) / R. ρ = (8000 bits × 100 pkts/sec) / 1,000,000 bps = 800,000 / 1,000,000 = 0.8. Since ρ < 1, the system is stable.",
+      },
+      {
+        id: "it351-ch6-q25",
+        text: "PROBLEM: Packets of 12,000 bits arrive at a rate of 120 packets/sec on a 1 Mbps link. Calculate the Traffic Intensity (ρ) and determine the system's stability.",
+        options: [
+          "ρ = 0.69; The system is stable.",
+          "ρ = 1.0; The queue size remains perfectly static.",
+          "ρ = 1.44; The queue grows indefinitely.",
+          "ρ = 1.44; The system drops older packets to remain stable.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Traffic Intensity ρ = (L × a) / R. ρ = (12,000 bits × 120 pkts/sec) / 1,000,000 bps = 1,440,000 / 1,000,000 = 1.44. Since ρ > 1, the queue grows indefinitely.",
+      },
+      {
+        id: "it351-ch6-q26",
+        text: "PROBLEM: A network path consists of four sequential links with transmission rates of 5 Mbps, 5 Mbps, 10 Mbps, and 2 Mbps. What is the maximum end-to-end throughput of this path?",
+        options: [
+          "10 Mbps",
+          "5 Mbps",
+          "2.5 Mbps",
+          "2 Mbps",
+        ],
+        correctIndex: 3,
+        explanation:
+          "The maximum end-to-end throughput is entirely dictated by the bottleneck link, which is the link with the minimum rate. The minimum link rate here is 2 Mbps.",
+      },
+      {
+        id: "it351-ch6-q27",
+        text: "PROBLEM: A 2000-byte packet travels across 3 identical links. Each link has a rate of 5 Mbps, a distance of 400 km, and a processing delay of 1 ms. Assume no queuing and a propagation speed of 2 × 10^8 m/s. Calculate the total end-to-end delay.",
+        options: [
+          "6.2 ms",
+          "12.4 ms",
+          "18.6 ms",
+          "24.8 ms",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Step 1: Convert (2000 bytes = 16,000 bits; 400 km = 400,000 m). Step 2: Base Delays for one link -> Transmission: 16,000 / (5 × 10^6) = 3.2 ms. Propagation: 400,000 / (2 × 10^8) = 2 ms. Step 3: Total per link = 3.2 + 2 + 1 (Processing) = 6.2 ms. Step 4: End-to-End for 3 links = 3 × 6.2 = 18.6 ms.",
+      },
+      {
+        id: "it351-ch6-q28",
+        text: "PROBLEM: Calculate the Transmission Delay for a 1000 byte packet on a 2 Mbps link.",
+        options: [
+          "0.5 ms",
+          "2 ms",
+          "4 ms",
+          "8 ms",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Step 1: Convert 1000 bytes to bits (1000 × 8 = 8000 bits). Step 2: Apply formula L/R -> 8000 / 2,000,000 = 0.004 seconds, which is 4 ms.",
+      },
+      {
+        id: "it351-ch6-q29",
+        text: "PROBLEM: Calculate the Propagation Delay for an 800 km link with a propagation speed of 2 × 10^8 m/s.",
+        options: [
+          "2 ms",
+          "4 ms",
+          "8 ms",
+          "16 ms",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Step 1: Convert 800 km to meters (800,000 meters). Step 2: Apply formula d/s -> 800,000 / (2 × 10^8) = 0.004 seconds, which is 4 ms.",
+      },
+      {
+        id: "it351-ch6-q30",
+        text: "PROBLEM: Calculate the Bandwidth-Delay Product (BDP) for a 20 Mbps link over a 1000 km distance. Assume propagation speed is 2 × 10^8 m/s.",
+        options: [
+          "10,000 bits",
+          "50,000 bits",
+          "100,000 bits",
+          "200,000 bits",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Step 1: Calculate Propagation Delay = 1,000,000 / (2 × 10^8) = 0.005 seconds. Step 2: BDP = Bandwidth × Propagation Delay = 20,000,000 × 0.005 = 100,000 bits.",
+      },
+    ],
+  },
+  {
+    id: "networking-chapter-7",
+    name: "Chapter 7: Reliable Communication and Error Detection",
+    description: "Bit Error Rate, Error Detection vs Correction, Parity, Checksum, CRC, and ARQ Protocols.",
+    questions: [
+      {
+        id: "it351-ch7-q1",
+        text: "Why is reliable communication described as an engineered achievement rather than a natural state?",
+        options: [
+          "Because physical media are naturally perfect and do not require modification.",
+          "Because physical media are inherently flawed, causing bits to arrive differently than sent due to physical disruptions.",
+          "Because networking protocols naturally adapt to all errors without human intervention.",
+          "Because digital data cannot be transmitted over physical cables.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Reliable communication is engineered because physical media are inherently flawed. Bits do not arrive exactly as sent due to physical disruptions.",
+      },
+      {
+        id: "it351-ch7-q2",
+        text: "Which of the following physical culprits can cause bit errors in communication media?",
+        options: [
+          "Software bugs, routing loops, and IP conflicts.",
+          "Data compression, encryption algorithms, and slow processors.",
+          "Thermal noise, electromagnetic interference, signal attenuation, crosstalk, and impulse noise.",
+          "Protocol mismatches, port blocking, and firewall restrictions.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The culprits of physical disruptions that cause bit errors include Thermal Noise, Electromagnetic Interference, Signal Attenuation, Crosstalk, and Impulse Noise.",
+      },
+      {
+        id: "it351-ch7-q3",
+        text: "What does the Bit Error Rate (BER) quantify?",
+        options: [
+          "The total number of packets dropped by a router per minute.",
+          "The speed at which bits travel over a physical medium.",
+          "The probability that any single transmitted bit is received incorrectly.",
+          "The amount of redundancy added to a frame for error correction.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Bit Error Rate (BER) quantifies the probability that any single transmitted bit is received incorrectly.",
+      },
+      {
+        id: "it351-ch7-q4",
+        text: "Which formula is used to calculate the Bit Error Rate (BER)?",
+        options: [
+          "Total Transmitted Bits / Number of Error Bits",
+          "Number of Error Bits / Total Transmitted Bits",
+          "Number of Error Bits * Total Transmitted Bits",
+          "(Number of Error Bits + Total Transmitted Bits) / 2",
+        ],
+        correctIndex: 1,
+        explanation:
+          "BER is calculated as the Number of Error Bits divided by the Total Transmitted Bits.",
+      },
+      {
+        id: "it351-ch7-q5",
+        text: "If a system has a BER of 10^-5 and it transmits 3,000,000 bits, how many error bits are expected to occur?",
+        options: [
+          "3",
+          "10",
+          "30",
+          "300",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Using the BER formula, 10^-5 * 3,000,000 transmitted bits results in an expected 30 error bits.",
+      },
+      {
+        id: "it351-ch7-q6",
+        text: "What is the fundamental difference between a single-bit error and a burst error?",
+        options: [
+          "Single-bit errors affect multiple consecutive bits, while burst errors affect only one bit.",
+          "Single-bit errors affect one isolated bit, while burst errors corrupt multiple consecutive bits.",
+          "Single-bit errors only occur in wireless networks, while burst errors occur in wired networks.",
+          "Single-bit errors are impossible to detect, whereas burst errors are easily corrected.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A single-bit error is when only one isolated bit is flipped, whereas a burst error occurs when multiple consecutive bits are corrupted.",
+      },
+      {
+        id: "it351-ch7-q7",
+        text: "Which error pattern is the most common in real-world communication systems?",
+        options: [
+          "Single-bit errors",
+          "Continuous synchronization errors",
+          "Burst errors",
+          "Framing errors",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Burst errors are the most common error pattern in real-world systems, while single-bit errors are rare in modern high-speed transmission.",
+      },
+      {
+        id: "it351-ch7-q8",
+        text: "According to the 'Strategic Divide', what is the main operational difference between Error Detection and Error Correction?",
+        options: [
+          "Error Detection fixes errors immediately, while Error Correction relies on retransmissions.",
+          "Error Detection requires high overhead, while Error Correction is lightweight.",
+          "Error Detection relies on the sender to retransmit the data, while Error Correction fixes the error immediately without retransmission.",
+          "Error Detection is only used for burst errors, while Error Correction is only used for single-bit errors.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Error Detection identifies that an error occurred and relies on retransmission, whereas Error Correction fixes the error immediately without needing retransmission.",
+      },
+      {
+        id: "it351-ch7-q9",
+        text: "Why is Error Correction NOT typically used as the standard in Ethernet and TCP/IP, despite fixing errors immediately?",
+        options: [
+          "It has high overhead and is generally reserved for specialized environments.",
+          "It cannot detect burst errors.",
+          "It requires a constant physical connection.",
+          "It violates the layered network architecture.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Error Correction has high overhead and is used in specialized environments, making Error Detection the standard for Ethernet and TCP/IP.",
+      },
+      {
+        id: "it351-ch7-q10",
+        text: "How does the basic one-dimensional even parity bit mechanism work?",
+        options: [
+          "It appends a random bit to the end of the data.",
+          "It appends an extra bit to ensure the total number of '1's in the data is strictly even.",
+          "It appends an extra bit to ensure the total number of '0's is strictly even.",
+          "It duplicates the entire data string for verification.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The even parity mechanism appends an extra bit to ensure the total number of '1's is strictly even.",
+      },
+      {
+        id: "it351-ch7-q11",
+        text: "Given the binary data sequence '1 0 1 1 0 0 1', what even parity bit should be appended?",
+        options: [
+          "0",
+          "1",
+          "It depends on the CRC polynomial.",
+          "Parity cannot be calculated for this sequence.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "The sequence '1 0 1 1 0 0 1' has four '1's. Since four is already an even number, a '0' is appended to keep the total number of '1's strictly even.",
+      },
+      {
+        id: "it351-ch7-q12",
+        text: "What is the critical vulnerability of using a single one-dimensional parity bit?",
+        options: [
+          "It requires excessive computational power.",
+          "It cannot be used over long distances.",
+          "If two bits flip, the parity remains correct, and the error sneaks through.",
+          "It relies on the receiver retransmitting the data automatically.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The vulnerability of a single parity bit is that if two bits flip, the parity check remains correct and the error goes undetected.",
+      },
+      {
+        id: "it351-ch7-q13",
+        text: "How does two-dimensional parity upgrade the capabilities of basic parity?",
+        options: [
+          "It completely eliminates the need for ARQ protocols.",
+          "It reduces overhead while increasing transmission speed.",
+          "It allows for burst error detection and single-bit correction.",
+          "It converts single-bit errors into continuous data streams.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Applying parity to both rows and columns (Two-Dimensional Parity) allows for burst error detection and single-bit correction at the cost of increased overhead.",
+      },
+      {
+        id: "it351-ch7-q14",
+        text: "What are the three main algorithmic steps taken to calculate the standard Internet Checksum?",
+        options: [
+          "Multiply, Divide, Remainder",
+          "Split, Sum, Invert",
+          "Encrypt, Hash, Sign",
+          "Buffer, Shift, XOR",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Internet Checksum is calculated by Splitting data into 16-bit words, Summing the words, and Inverting the result (taking the one's complement).",
+      },
+      {
+        id: "it351-ch7-q15",
+        text: "During the receiver check for an Internet Checksum, what must the sum of all words plus the checksum equal for the packet to be accepted?",
+        options: [
+          "All 0s",
+          "A specific generator polynomial",
+          "All 1s",
+          "The original parity bit",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The receiver check requires that all words plus the Checksum must equal all 1s. If any 0 appears, the packet is rejected.",
+      },
+      {
+        id: "it351-ch7-q16",
+        text: "Which of the following describes a flaw or limitation of the Internet Checksum?",
+        options: [
+          "It requires polynomial division.",
+          "It cannot detect single-bit errors.",
+          "It is not mathematically perfect against complex burst errors.",
+          "It has a 32-bit overhead cost.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "While fast and simple, the Internet Checksum is not mathematically perfect against complex burst errors, making its burst error catch rate 'moderate'.",
+      },
+      {
+        id: "it351-ch7-q17",
+        text: "What type of arithmetic does the Cyclic Redundancy Check (CRC) Core Engine rely upon?",
+        options: [
+          "Binary arithmetic with carry wraparound",
+          "Polynomial arithmetic over binary fields (XOR subtraction)",
+          "Standard floating-point arithmetic",
+          "One's complement addition",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The CRC Core Engine is based on polynomial arithmetic over binary fields, specifically using division via XOR subtraction.",
+      },
+      {
+        id: "it351-ch7-q18",
+        text: "What is the first step of the CRC algorithm before division occurs?",
+        options: [
+          "Invert all the bits in the data block.",
+          "Append zeros equal to the generator polynomial's degree.",
+          "Split the data into 16-bit segments.",
+          "Calculate the even parity bit.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The first step of the CRC algorithm is to append zeros equal to the generator degree to the data block.",
+      },
+      {
+        id: "it351-ch7-q19",
+        text: "If a CRC generator polynomial has a degree of 4, how many zeros should initially be appended to the data block before division?",
+        options: [
+          "2 zeros",
+          "3 zeros",
+          "4 zeros",
+          "5 zeros",
+        ],
+        correctIndex: 2,
+        explanation:
+          "According to the CRC algorithm, you append zeros equal to the generator's degree. Therefore, a degree of 4 requires 4 zeros.",
+      },
+      {
+        id: "it351-ch7-q20",
+        text: "According to the Ethernet standard, what errors does the CRC algorithm perfectly catch?",
+        options: [
+          "Only single-bit errors.",
+          "ALL single-bit errors, ALL double-bit errors, and ALL burst errors shorter than the generator degree.",
+          "Any burst error regardless of length.",
+          "Only errors occurring in the checksum header.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Ethernet Standard CRC perfectly catches ALL single-bit errors, ALL double-bit errors, and ALL burst errors shorter than the generator degree.",
+      },
+      {
+        id: "it351-ch7-q21",
+        text: "Comparing the mathematical complexity of Parity, Checksum, and CRC, which has the highest complexity?",
+        options: [
+          "Parity",
+          "Checksum",
+          "CRC",
+          "They all have equal mathematical complexity.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "CRC has 'High (Polynomial Division)' mathematical complexity, compared to Parity ('Very Low') and Checksum ('Low (Addition)').",
+      },
+      {
+        id: "it351-ch7-q22",
+        text: "Which detection mechanism is best suited for catching burst errors, and what is its typical overhead cost?",
+        options: [
+          "Parity; 1 bit overhead",
+          "Checksum; 16 bits overhead",
+          "CRC; typically 16-32 bits overhead",
+          "Stop-and-Wait; variable overhead",
+        ],
+        correctIndex: 2,
+        explanation:
+          "CRC has an 'Excellent' burst error catch rate and a typical overhead cost that varies between 16 to 32 bits.",
+      },
+      {
+        id: "it351-ch7-q23",
+        text: "Why is an error detection checkpoint considered useless without an Automatic Repeat reQuest (ARQ) protocol?",
+        options: [
+          "Because error detection algorithms cannot run without ARQ synchronization.",
+          "Because detecting an error is useless if we cannot recover the lost data by asking for a retransmission.",
+          "Because ARQ generates the polynomial used in CRC.",
+          "Because routers discard packets without an ARQ header.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The reality check is that detecting an error is useless if we cannot recover the lost data. ARQ protocols provide the solution by governing how devices ask for a 'do-over'.",
+      },
+      {
+        id: "it351-ch7-q24",
+        text: "What is the fundamental mechanism behind the Stop-and-Wait ARQ protocol?",
+        options: [
+          "Send multiple frames simultaneously and wait for a single acknowledgment.",
+          "Send one frame, stop, and wait for an Acknowledgment (ACK). If timeout, retransmit.",
+          "Send frames continuously and only pause if a Negative Acknowledgment (NACK) is received.",
+          "Send a frame and immediately close the connection without waiting for an ACK.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Stop-and-Wait mechanism is: Send one frame. Stop. Wait for Acknowledgment (ACK). If ACK arrives, send the next. If timeout, retransmit.",
+      },
+      {
+        id: "it351-ch7-q25",
+        text: "What is the specific formula used to calculate the efficiency of a Stop-and-Wait protocol?",
+        options: [
+          "Efficiency = T_p / (T_p + 2T_t)",
+          "Efficiency = T_t / (T_t + 2T_p)",
+          "Efficiency = 2T_p / T_t",
+          "Efficiency = T_t * 2T_p",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Efficiency Formula for Stop-and-Wait ARQ is Efficiency = T_t / (T_t + 2T_p).",
+      },
+      {
+        id: "it351-ch7-q26",
+        text: "In a Stop-and-Wait ARQ system over a 1,000 km distance with 1 Mbps bandwidth, link utilization plummets to 44%. Why does this protocol become a bottleneck for long-distance links?",
+        options: [
+          "Because long-distance links introduce continuous burst errors.",
+          "Because the required sender-side memory buffer is too large.",
+          "Because the sender spends most of its time idle, waiting for an ACK, limiting throughput.",
+          "Because polynomial division takes too long over large distances.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Stop-and-Wait creates a bottleneck because of the 'Waiting Time / Idle Link' period where the sender does nothing while waiting for the ACK, severely limiting throughput on high-latency links.",
+      },
+      {
+        id: "it351-ch7-q27",
+        text: "How does the Go-Back-N (Pipelining) protocol resolve the bandwidth utilization bottleneck of Stop-and-Wait?",
+        options: [
+          "By skipping error detection entirely to speed up transmission.",
+          "By continuously transmitting multiple frames without waiting for individual ACKs.",
+          "By compressing the data frames to be much smaller.",
+          "By calculating the checksum locally instead of transmitting it.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Go-Back-N maximizes bandwidth utilization because the sender transmits multiple frames continuously (Window = N) without waiting for individual ACKs.",
+      },
+      {
+        id: "it351-ch7-q28",
+        text: "In a Go-Back-N ARQ setup, if Frame 1 arrives successfully but Frame 2 fails, what happens to subsequently transmitted Frames 3 and 4?",
+        options: [
+          "The receiver buffers Frames 3 and 4 while waiting for Frame 2.",
+          "The receiver discards all subsequent frames (Frames 3 and 4), and the sender must go back and re-transmit from Frame 2.",
+          "The receiver processes Frames 3 and 4 and only requests a retransmission for Frame 2.",
+          "The connection is terminated immediately.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The 'Catch' of Go-Back-N is that if one frame fails, the receiver discards all subsequent frames. The sender must 'go back' and re-transmit all N frames from the point of failure.",
+      },
+      {
+        id: "it351-ch7-q29",
+        text: "Which of the following correctly compares the memory footprints of Stop-and-Wait ARQ versus Go-Back-N ARQ?",
+        options: [
+          "Both require massive memory footprints.",
+          "Stop-and-Wait requires large sender-side buffering, while Go-Back-N requires minimal buffering.",
+          "Stop-and-Wait requires minimal memory buffer, while Go-Back-N requires large sender-side buffering to store unacknowledged frames.",
+          "Neither protocol requires a memory footprint.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Stop-and-Wait requires a minimal memory footprint/buffer. Go-Back-N has a large memory footprint because it requires sender-side buffering for multiple continuous frames.",
+      },
+      {
+        id: "it351-ch7-q30",
+        text: "According to the 'Architecture of Reliability', what are the three distinct layers that guarantee file delivery?",
+        options: [
+          "Layer 1: Encryption, Layer 2: Compression, Layer 3: Routing",
+          "Layer 1: Application, Layer 2: Transport, Layer 3: Physical",
+          "Layer 1: Physical Medium / BER, Layer 2: Mathematical Detection (CRC/Checksum), Layer 3: ARQ Protocols (The System)",
+          "Layer 1: Parity, Layer 2: Ethernet, Layer 3: Wi-Fi",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Architecture of Reliability consists of Layer 1 (The Reality): Physical Medium/BER, Layer 2 (The Math): Mathematical Detection like CRC/Checksum, and Layer 3 (The System): ARQ Protocols.",
+      }
+    ],
+  },
+  {
+    id: "networking-chapter-8",
+    name: "Chapter 8: Data Link Layer and Multiple Access",
+    description: "LLC and MAC sublayers, ALOHA protocols, CSMA/CD, Ethernet frames, and collision domains.",
+    questions: [
+      {
+        id: "it351-ch8-q1",
+        text: "What are the two sublayers of the Data Link Layer mentioned in the material?",
+        options: [
+          "Logical Link Control (LLC) and Medium Access Control (MAC)",
+          "Network Control and Physical Link",
+          "Static Allocation and Dynamic Allocation",
+          "Collision Control and Broadcast Control",
+        ],
+        correctIndex: 0,
+        explanation:
+          "According to the Data Link Layer hierarchy slide, it is divided into the Logical Link Control (LLC) and Medium Access Control (MAC) sublayers.",
+      },
+      {
+        id: "it351-ch8-q2",
+        text: "What is the primary responsibility of the Medium Access Control (MAC) sublayer?",
+        options: [
+          "Encrypting data over the network",
+          "Regulating access to the shared medium",
+          "Routing packets to different networks",
+          "Converting digital signals to analog",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The MAC sublayer is described as the traffic controller, strictly responsible for regulating access to the shared medium.",
+      },
+      {
+        id: "it351-ch8-q3",
+        text: "If N nodes share a channel with a capacity of R bps, what is the data rate per node under perfect scheduling?",
+        options: [
+          "R * N bps",
+          "N / R bps",
+          "R / N bps",
+          "R + N bps",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The multiple access problem slide states that perfect scheduling yields R/N bps per node.",
+      },
+      {
+        id: "it351-ch8-q4",
+        text: "Which of the following is a major disadvantage of Static Channel Allocation (like TDMA) under low traffic?",
+        options: [
+          "It causes too many collisions.",
+          "It is highly inefficient and wastes capacity.",
+          "It forces continuous retransmissions.",
+          "It requires a random backoff time.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Static channel allocation wastes capacity and forces delays, making efficiency plummet under low traffic. It is highly inefficient for bursty modern network traffic.",
+      },
+      {
+        id: "it351-ch8-q5",
+        text: "What is the transmission rule for Pure ALOHA?",
+        options: [
+          "Nodes transmit only at slot boundaries.",
+          "Nodes transmit immediately when data is ready.",
+          "Nodes listen to the channel before transmitting.",
+          "Nodes wait for a token before transmitting.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In Pure ALOHA, nodes transmit immediately when data is ready.",
+      },
+      {
+        id: "it351-ch8-q6",
+        text: "What is the throughput formula for Pure ALOHA?",
+        options: [
+          "S = G * e^(-G)",
+          "S = G * e^(-2G)",
+          "S = 2G * e^(-G)",
+          "S = e^(-2G)",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The throughput formula for Pure ALOHA is S = G * e^(-2G), where G is average transmission attempts per frame time.",
+      },
+      {
+        id: "it351-ch8-q7",
+        text: "At what value of G does Pure ALOHA achieve maximum throughput?",
+        options: [
+          "G = 0.184",
+          "G = 0.5",
+          "G = 1",
+          "G = 2",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Calculus dictates that the maximum throughput for Pure ALOHA occurs when G = 0.5.",
+      },
+      {
+        id: "it351-ch8-q8",
+        text: "Problem: In Pure ALOHA, if G = 0.5 and e^(-1) is approximately 0.368, calculate the maximum efficiency (throughput S).",
+        options: [
+          "18.4%",
+          "36.8%",
+          "50.0%",
+          "80.0%",
+        ],
+        correctIndex: 0,
+        explanation:
+          "S = 0.5 * e^(-1) = 0.5 * 0.368 = 0.184, which means the maximum efficiency is 18.4%.",
+      },
+      {
+        id: "it351-ch8-q9",
+        text: "What is the primary difference in the transmission rule of Slotted ALOHA compared to Pure ALOHA?",
+        options: [
+          "Nodes must listen to the medium first.",
+          "Nodes can transmit only at slot boundaries.",
+          "Nodes never retransmit after a collision.",
+          "Nodes use a collision detection mechanism.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In Slotted ALOHA, nodes can transmit only at slot boundaries, whereas in Pure ALOHA they transmit whenever data is ready.",
+      },
+      {
+        id: "it351-ch8-q10",
+        text: "What is the throughput formula for Slotted ALOHA?",
+        options: [
+          "S = G * e^(-2G)",
+          "S = G * e^(-G)",
+          "S = 2G * e^(-G)",
+          "S = G^2 * e^(-G)",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Slotted ALOHA formula is S = G * e^(-G).",
+      },
+      {
+        id: "it351-ch8-q11",
+        text: "At what value of G is Slotted ALOHA maximized, and what is its peak efficiency?",
+        options: [
+          "G = 0.5, peaking at 18.4%",
+          "G = 1, peaking at 36.8%",
+          "G = 1.2, peaking at 36.1%",
+          "G = 2, peaking at 50%",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Slotted ALOHA is maximized at G = 1, capping its peak efficiency at 36.8%.",
+      },
+      {
+        id: "it351-ch8-q12",
+        text: "Problem: For Slotted ALOHA, if G = 1.2, compute the throughput S (assume e^(-1.2) = 0.301).",
+        options: [
+          "0.184",
+          "0.301",
+          "0.361",
+          "1.200",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Using the formula S = G * e^(-G): S = 1.2 * e^(-1.2) = 1.2 * 0.301 = 0.361.",
+      },
+      {
+        id: "it351-ch8-q13",
+        text: "What principle does Carrier Sense Multiple Access (CSMA) introduce to reduce collisions?",
+        options: [
+          "Listen before transmitting to check channel status.",
+          "Permanently divide the channel into fixed time slots.",
+          "Only transmit at exact clock ticks.",
+          "Transmit simultaneously on multiple frequencies.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "CSMA requires a node to listen before transmitting to check channel status (e.g., 1-persistent, Non-persistent).",
+      },
+      {
+        id: "it351-ch8-q14",
+        text: "In CSMA, what is considered the \"Vulnerable Period\" during which a false empty channel might be sensed?",
+        options: [
+          "Random Backoff Time",
+          "Transmission Time",
+          "Propagation Delay",
+          "Frame Inter-Arrival Time",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The vulnerable period in CSMA is strictly tied to the Propagation Delay; a node might falsely sense an empty channel before the other node's wave reaches it.",
+      },
+      {
+        id: "it351-ch8-q15",
+        text: "In the CSMA/CD protocol, what happens immediately after a collision is detected?",
+        options: [
+          "The node continues transmitting to ensure data delivery.",
+          "The node aborts immediately and sends a Jam Signal.",
+          "The node waits for the receiver to send an acknowledgment.",
+          "The node switches to a different transmission frequency.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In CSMA/CD, upon detecting a collision, the node aborts immediately, sends a Jam Signal, and then waits a random backoff time.",
+      },
+      {
+        id: "it351-ch8-q16",
+        text: "To guarantee reliable collision detection in CSMA/CD, what is the required relationship between transmission time (Tt) and propagation delay (Tp)?",
+        options: [
+          "Tt >= Tp",
+          "Tt <= 2 * Tp",
+          "Tt >= 2 * Tp",
+          "Tt = Tp",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The physics of CSMA/CD dictates that transmission time must be at least twice the propagation delay: Tt >= 2 * Tp.",
+      },
+      {
+        id: "it351-ch8-q17",
+        text: "What is the formula to calculate the minimum packet size (Lmin) to ensure collision detection?",
+        options: [
+          "Lmin = Tp * R",
+          "Lmin = 2 * Tp / R",
+          "Lmin = 2 * Tp * R",
+          "Lmin = R / (2 * Tp)",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Since Tt = L/R and Tt >= 2 * Tp, substituting gives Lmin = 2 * Tp * R.",
+      },
+      {
+        id: "it351-ch8-q18",
+        text: "Problem: A network runs at a rate (R) of 100 Mbps with a propagation delay (Tp) of 2 μs. Calculate the minimum frame size (Lmin) in bits.",
+        options: [
+          "100 bits",
+          "200 bits",
+          "400 bits",
+          "800 bits",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Lmin = 2 * (2 * 10^-6) * (100 * 10^6) = 400 bits.",
+      },
+      {
+        id: "it351-ch8-q19",
+        text: "Problem: Following the previous calculation where Lmin = 400 bits, what is the minimum frame size in bytes?",
+        options: [
+          "25 bytes",
+          "50 bytes",
+          "64 bytes",
+          "100 bytes",
+        ],
+        correctIndex: 1,
+        explanation:
+          "400 bits divided by 8 bits/byte equals 50 bytes.",
+      },
+      {
+        id: "it351-ch8-q20",
+        text: "What is the minimum frame size of a standard Ethernet frame?",
+        options: [
+          "46 bytes",
+          "50 bytes",
+          "64 bytes",
+          "1518 bytes",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Anatomy of an Ethernet Frame specifies that the Minimum Frame Size is 64 bytes.",
+      },
+      {
+        id: "it351-ch8-q21",
+        text: "What is the maximum frame size of a standard Ethernet frame?",
+        options: [
+          "64 bytes",
+          "1500 bytes",
+          "1518 bytes",
+          "2048 bytes",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Anatomy of an Ethernet Frame specifies that the Maximum Frame Size is 1518 bytes.",
+      },
+      {
+        id: "it351-ch8-q22",
+        text: "In an Ethernet frame, how many bytes are allocated to the Source MAC address?",
+        options: [
+          "2 bytes",
+          "4 bytes",
+          "6 bytes",
+          "7 bytes",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Ethernet frame structure diagram shows the Source MAC address is 6 bytes long (same as the Destination MAC).",
+      },
+      {
+        id: "it351-ch8-q23",
+        text: "How large is the Preamble in an Ethernet Frame?",
+        options: [
+          "2 bytes",
+          "4 bytes",
+          "6 bytes",
+          "7 bytes",
+        ],
+        correctIndex: 3,
+        explanation:
+          "The Ethernet frame structure diagram shows the Preamble is 7 bytes long.",
+      },
+      {
+        id: "it351-ch8-q24",
+        text: "What is the size range of the Data field inside an Ethernet frame?",
+        options: [
+          "0-1500 bytes",
+          "46-1500 bytes",
+          "64-1518 bytes",
+          "46-1518 bytes",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Data field inside the standard Ethernet frame ranges from 46 to 1500 bytes.",
+      },
+      {
+        id: "it351-ch8-q25",
+        text: "How does a Hub manage collision domains?",
+        options: [
+          "Each port operates as a separate collision domain.",
+          "It represents one single collision domain for all connected devices.",
+          "It separates broadcast domains.",
+          "It operates entirely collision-free.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Domain Matrix slide illustrates that a Hub forms \"One single Collision Domain\".",
+      },
+      {
+        id: "it351-ch8-q26",
+        text: "How does a Switch handle collision domains?",
+        options: [
+          "All ports share one single collision domain.",
+          "It separates broadcast domains completely.",
+          "Each port is a separate collision domain.",
+          "It acts as a Hub logically.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Domain Matrix slide specifies that for a Switch, \"Each port is a separate Collision Domain.\"",
+      },
+      {
+        id: "it351-ch8-q27",
+        text: "What is the primary domain-separation function of a Router?",
+        options: [
+          "It combines multiple collision domains into one.",
+          "It separates Broadcast Domains.",
+          "It acts identically to a switch.",
+          "It combines broadcast domains.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Domain Matrix slide notes that \"Routers separate Broadcast Domains.\"",
+      },
+      {
+        id: "it351-ch8-q28",
+        text: "What is the exact definition of a Collision Domain?",
+        options: [
+          "All devices that receive a broadcast frame.",
+          "An area where frame collisions can occur.",
+          "A permanent division of a channel into fixed time slots.",
+          "A network segment without any hubs.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The domain matrix slide defines a Collision Domain as the \"Area where frame collisions can occur.\"",
+      },
+      {
+        id: "it351-ch8-q29",
+        text: "How do modern Ethernet environments solve the multiple access problem regarding collisions?",
+        options: [
+          "By strictly enforcing pure ALOHA protocol rules.",
+          "By using static channel allocation for all data.",
+          "By operating completely collision-free using Full-Duplex paths.",
+          "By shortening frame sizes.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Modern Ethernet operates completely collision-free by utilizing Full-Duplex Switching with dedicated transmit and receive links.",
+      },
+      {
+        id: "it351-ch8-q30",
+        text: "What is the consequence of utilizing Full-Duplex Switching on the CSMA/CD protocol?",
+        options: [
+          "It renders CSMA/CD entirely obsolete.",
+          "It makes CSMA/CD highly essential.",
+          "It forces CSMA/CD to use Slotted ALOHA.",
+          "It requires CSMA/CD to increase random backoff times.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Because full-duplex paths make collisions physically impossible, it renders CSMA/CD entirely obsolete in modern environments.",
+      }
+    ],
+  },
+  {
+    id: "networking-chapter-9",
+    name: "Chapter 9: Transport Layer and TCP",
+    description: "Transport layer principles, multiplexing, UDP, TCP reliability, flow control, and congestion control.",
+    questions: [
+      {
+        id: "it351-ch9-q1",
+        text: "What does the Transport Layer primarily ensure between application processes?",
+        options: [
+          "Physical connection establishment and signal conversion",
+          "Reliable, ordered, and efficient end-to-end communication",
+          "Routing of packets through the shortest path across routers",
+          "Translation of IP addresses to MAC addresses",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Transport Layer acts as a bridge between applications and the network, ensuring reliable, ordered, and efficient end-to-end communication between application processes.",
+      },
+      {
+        id: "it351-ch9-q2",
+        text: "Which mechanism enables multiple applications to operate simultaneously on a network device?",
+        options: [
+          "Pipelining",
+          "Congestion Avoidance",
+          "Multiplexing via Port Numbers",
+          "Bandwidth-Delay Product",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Multiplexing uses Port Numbers to share the network, enabling multiple applications (like Web, Email, Database) to operate simultaneously.",
+      },
+      {
+        id: "it351-ch9-q3",
+        text: "According to the Transport Layer principles, what constitutes a Connection Identity?",
+        options: [
+          "[Source MAC, Dest MAC] + [Source IP, Dest IP]",
+          "[Source IP, Source Port] + [Dest IP, Dest Port]",
+          "Window Size + RTT",
+          "EstimatedRTT + DevRTT",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A Connection Identity is defined as the combination of [Source IP, Source Port] and [Dest IP, Dest Port].",
+      },
+      {
+        id: "it351-ch9-q4",
+        text: "Which application typically operates over Port 80?",
+        options: [
+          "Email",
+          "Database",
+          "Web",
+          "DNS",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Port 80 is specifically designated for Web traffic during port multiplexing.",
+      },
+      {
+        id: "it351-ch9-q5",
+        text: "Which of the following is a key characteristic of the User Datagram Protocol (UDP)?",
+        options: [
+          "Connection-oriented",
+          "Reliable and ordered delivery",
+          "High precision",
+          "Connectionless with no reliability",
+        ],
+        correctIndex: 3,
+        explanation:
+          "UDP is connectionless, has no reliability, no congestion control, and features low overhead.",
+      },
+      {
+        id: "it351-ch9-q6",
+        text: "Which of the following is a key characteristic of the Transmission Control Protocol (TCP)?",
+        options: [
+          "Low overhead",
+          "Connectionless",
+          "Flow and Congestion Control",
+          "No reliability",
+        ],
+        correctIndex: 2,
+        explanation:
+          "TCP is a connection-oriented protocol that provides reliable and ordered delivery, flow and congestion control, and high precision.",
+      },
+      {
+        id: "it351-ch9-q7",
+        text: "What is the correct sequence of messages exchanged during establishing reliability in TCP?",
+        options: [
+          "ACK -> SYN -> SYN-ACK",
+          "SYN -> SYN-ACK -> ACK",
+          "SYN-ACK -> ACK -> SYN",
+          "SYN -> ACK -> SYN-ACK",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The TCP 3-Way Handshake starts with the Client sending a SYN, the Server responding with a SYN-ACK, and the Client concluding with an ACK.",
+      },
+      {
+        id: "it351-ch9-q8",
+        text: "What is the primary purpose of the TCP 3-Way Handshake?",
+        options: [
+          "To prevent overwhelming the network",
+          "To calculate the Bandwidth-Delay Product",
+          "To establish Initial Sequence Numbers and guarantee bidirectional communication",
+          "To switch from exponential to linear growth",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The 3-Way Handshake establishes Initial Sequence Numbers and guarantees bidirectional communication before any real data flows.",
+      },
+      {
+        id: "it351-ch9-q9",
+        text: "How does the Sliding Window mechanism improve network efficiency?",
+        options: [
+          "By replacing TCP with UDP to lower overhead",
+          "By transmitting multiple segments without waiting for individual ACKs",
+          "By dropping packets to slow down the sender",
+          "By multiplexing multiple IPs into one port",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Sliding Window allows TCP to transmit multiple segments without waiting for individual ACKs, significantly improving efficiency through pipelining.",
+      },
+      {
+        id: "it351-ch9-q10",
+        text: "What is the formula used to estimate network throughput based on the sliding window?",
+        options: [
+          "Bandwidth × Delay",
+          "Window Size / RTT",
+          "min(rwnd, cwnd)",
+          "EstimatedRTT + 4 × DevRTT",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Throughput is calculated by dividing the Window Size by the Round Trip Time (RTT).",
+      },
+      {
+        id: "it351-ch9-q11",
+        text: "Problem: If the Sliding Window size is 64 KB and the RTT is 100 ms, what is the approximate throughput? (Assume 1 KB = 1024 bytes)",
+        options: [
+          "0.655 MB/s",
+          "6.55 MB/s",
+          "640 KB/s",
+          "0.065 MB/s",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Convert 64 KB to 65,536 bytes. Divide by 0.1s (100ms) to get 655,360 bytes/s, which is approximately 0.655 MB/s.",
+      },
+      {
+        id: "it351-ch9-q12",
+        text: "Problem: Calculate the throughput if the Window Size is 128 KB and the RTT is 100 ms. (Assume 1 KB = 1024 bytes)",
+        options: [
+          "0.655 MB/s",
+          "1.31 MB/s",
+          "2.62 MB/s",
+          "13.1 MB/s",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Convert 128 KB to 131,072 bytes. Divide by 0.1s to get 1,310,720 bytes/s, which is approximately 1.31 MB/s.",
+      },
+      {
+        id: "it351-ch9-q13",
+        text: "What is the primary difference between Flow Control and Congestion Control?",
+        options: [
+          "Flow control uses UDP; Congestion control uses TCP.",
+          "Flow control prevents overwhelming the receiver; Congestion control prevents overwhelming the network.",
+          "Flow control modifies the port numbers; Congestion control modifies the IP addresses.",
+          "Flow control is handled by routers; Congestion control is handled by switches.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Flow control prevents overwhelming the receiver using a buffer, while Congestion control prevents overwhelming the broader network.",
+      },
+      {
+        id: "it351-ch9-q14",
+        text: "Which variable specifically controls Flow Control?",
+        options: [
+          "cwnd",
+          "ssthresh",
+          "rwnd",
+          "DevRTT",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Flow Control is controlled by the receiver window variable, rwnd.",
+      },
+      {
+        id: "it351-ch9-q15",
+        text: "Which variable specifically controls Congestion Control?",
+        options: [
+          "rwnd",
+          "cwnd",
+          "ssthresh",
+          "SampleRTT",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Congestion Control is controlled by the congestion window variable, cwnd.",
+      },
+      {
+        id: "it351-ch9-q16",
+        text: "How is the Effective Window mathematically defined to ensure neither the network nor the receiver is overwhelmed?",
+        options: [
+          "rwnd + cwnd",
+          "max(rwnd, cwnd)",
+          "min(rwnd, cwnd)",
+          "rwnd × cwnd",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Effective Window limits unacknowledged data and is calculated as min(rwnd, cwnd).",
+      },
+      {
+        id: "it351-ch9-q17",
+        text: "What are the four phases of TCP Congestion Control in the correct order?",
+        options: [
+          "Fast Retransmit, Slow Start, Congestion Avoidance, Fast Recovery",
+          "Slow Start, Congestion Avoidance, Fast Retransmit, Fast Recovery",
+          "Congestion Avoidance, Fast Recovery, Slow Start, Fast Retransmit",
+          "Slow Start, Fast Recovery, Congestion Avoidance, Fast Retransmit",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The 4 phases are: 1. Slow Start, 2. Congestion Avoidance, 3. Fast Retransmit, 4. Fast Recovery.",
+      },
+      {
+        id: "it351-ch9-q18",
+        text: "What type of mathematical growth characterizes Phase 1 (Slow Start) of TCP Congestion Control?",
+        options: [
+          "Linear growth",
+          "Logarithmic growth",
+          "Exponential growth",
+          "Constant growth",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Phase 1: Slow Start relies on initial exponential probing, resulting in exponential growth of the congestion window.",
+      },
+      {
+        id: "it351-ch9-q19",
+        text: "During Slow Start, how does the congestion window (cwnd) size change after every RTT?",
+        options: [
+          "It increases by 1 MSS.",
+          "It is cut in half.",
+          "It doubles.",
+          "It resets to 1 MSS.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "In Slow Start, the connection begins with cwnd = 1 MSS and the window doubles after every RTT (1 -> 2 -> 4 -> 8...).",
+      },
+      {
+        id: "it351-ch9-q20",
+        text: "Problem: In TCP Slow Start, if the initial cwnd is 1 MSS, what will the window size be after 4 RTTs?",
+        options: [
+          "4 MSS",
+          "8 MSS",
+          "16 MSS",
+          "32 MSS",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The formula is Initial cwnd × 2^RTTs. After 4 RTTs: 1 × 2^4 = 16 MSS.",
+      },
+      {
+        id: "it351-ch9-q21",
+        text: "What does the AIMD principle stand for in Phase 2 of TCP Congestion Control?",
+        options: [
+          "Additive Increase, Multiplicative Decrease",
+          "Automatic Increase, Manual Decrease",
+          "Asynchronous Insertion, Multiplexed Delivery",
+          "Acknowledged Increase, Multiplicative Delivery",
+        ],
+        correctIndex: 0,
+        explanation:
+          "AIMD stands for Additive Increase, Multiplicative Decrease, which governs the Congestion Sawtooth pattern.",
+      },
+      {
+        id: "it351-ch9-q22",
+        text: "Under the AIMD principle, what happens to the congestion window (cwnd) during the additive increase phase?",
+        options: [
+          "cwnd is doubled per RTT.",
+          "cwnd = cwnd + 1 MSS per RTT.",
+          "cwnd remains static until an ACK is received.",
+          "ssthresh is added to cwnd.",
+        ],
+        correctIndex: 1,
+        explanation:
+          "During Additive Increase, cautious linear growth occurs where cwnd = cwnd + 1 MSS per RTT.",
+      },
+      {
+        id: "it351-ch9-q23",
+        text: "Under the AIMD principle, what occurs upon detecting packet loss (Multiplicative Decrease)?",
+        options: [
+          "ssthresh is cut in half.",
+          "cwnd drops to 0.",
+          "The connection resets entirely.",
+          "rwnd is doubled.",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Upon packet loss, Multiplicative Decrease dictates that ssthresh is halved.",
+      },
+      {
+        id: "it351-ch9-q24",
+        text: "What is the standard formula for calculating the EstimatedRTT using the Exponential Weighted Moving Average (EWMA)?",
+        options: [
+          "EstimatedRTT = α(EstimatedRTT) + (1 - α)(SampleRTT)",
+          "EstimatedRTT = (1 - α)EstimatedRTT + α(SampleRTT)",
+          "EstimatedRTT = Window Size / Throughput",
+          "EstimatedRTT = EstimatedRTT + 4 × DevRTT",
+        ],
+        correctIndex: 1,
+        explanation:
+          "EstimatedRTT = (1 - α)EstimatedRTT + α(SampleRTT), where α is typically 0.125.",
+      },
+      {
+        id: "it351-ch9-q25",
+        text: "Problem: Given an EstimatedRTT of 100ms, a SampleRTT of 120ms, and α = 0.125, what is the new EstimatedRTT?",
+        options: [
+          "100 ms",
+          "102.5 ms",
+          "110 ms",
+          "112.5 ms",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Calculation: 0.875(100) + 0.125(120) = 87.5 + 15 = 102.5 ms.",
+      },
+      {
+        id: "it351-ch9-q26",
+        text: "Problem: Given an EstimatedRTT of 200ms, a SampleRTT of 240ms, and α = 0.125, what is the new EstimatedRTT?",
+        options: [
+          "205 ms",
+          "210 ms",
+          "220 ms",
+          "225 ms",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Calculation: 0.875(200) + 0.125(240) = 175 + 30 = 205 ms.",
+      },
+      {
+        id: "it351-ch9-q27",
+        text: "What is the formula used to calculate the TCP Timeout interval?",
+        options: [
+          "Timeout = EstimatedRTT + SampleRTT",
+          "Timeout = EstimatedRTT + α × DevRTT",
+          "Timeout = EstimatedRTT + 4 × DevRTT",
+          "Timeout = 2 × EstimatedRTT",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Timeout is calculated as EstimatedRTT + 4 × DevRTT to determine when to give up waiting for an ACK.",
+      },
+      {
+        id: "it351-ch9-q28",
+        text: "In the context of Maximum Utilization, what does the Bandwidth-Delay Product (BDP) represent?",
+        options: [
+          "The error rate of a given physical medium",
+          "The total area of the network topology",
+          "The number of routers between source and destination",
+          "The volume of the pipe, or how large the window must be to fully utilize a link",
+        ],
+        correctIndex: 3,
+        explanation:
+          "BDP represents the 'Volume' of the pipe (Bandwidth × Delay). It indicates how large the sliding window must be to fully utilize a link without pausing.",
+      },
+      {
+        id: "it351-ch9-q29",
+        text: "Problem: Calculate the Bandwidth-Delay Product (BDP) in bits for a link with a Bandwidth of 50 Mbps and an RTT of 50 ms.",
+        options: [
+          "2.5 × 10^6 bits",
+          "25 × 10^6 bits",
+          "2.5 × 10^3 bits",
+          "250 × 10^3 bits",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Calculation: 50 × 10^6 bits/s × 0.05 seconds = 2.5 × 10^6 bits.",
+      },
+      {
+        id: "it351-ch9-q30",
+        text: "In a Congestion Window Trace, if the initial cwnd is 1 MSS and ssthresh is 16 MSS, what happens to the growth rate after RTT 5 (when cwnd hits 16)?",
+        options: [
+          "The window size drops to 1 MSS.",
+          "The window size doubles to 32 MSS in RTT 6.",
+          "The window size transitions to linear growth, becoming 17 MSS in RTT 6.",
+          "The window size remains strictly at 16 MSS.",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Once cwnd hits the ssthresh (16 MSS at RTT 5), the system exits the exponential Slow Start phase and enters Congestion Avoidance, leading to linear growth (+1 MSS per RTT), making it 17 at RTT 6.",
+      }
+    ],
+  },
 ];
 
 export const computerNetworking: Subject = {
