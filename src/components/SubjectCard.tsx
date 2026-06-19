@@ -1,17 +1,14 @@
-import { Subject } from "@/types";
+import { SubjectSummary } from "@/types";
 import LucideIcon from "./LucideIcon";
 import { cn } from "@/lib/utils";
-import { getSubjectChapterCount, getSubjectQuestions } from "@/lib/subjectUtils";
 
 interface SubjectCardProps {
-  subject: Subject;
-  onStart: (subject: Subject) => void;
+  subject: SubjectSummary;
+  isLoading?: boolean;
+  onStart: (subjectId: string) => void;
 }
 
-const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
-  const chapterCount = getSubjectChapterCount(subject);
-  const questionCount = getSubjectQuestions(subject).length;
-
+const SubjectCard = ({ subject, isLoading = false, onStart }: SubjectCardProps) => {
   return (
     <button
       type="button"
@@ -20,7 +17,8 @@ const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
         "hover:border-primary/50 hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-primary/5",
         "active:scale-[0.98] cursor-pointer flex flex-col h-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       )}
-      onClick={() => onStart(subject)}
+      onClick={() => onStart(subject.id)}
+      disabled={isLoading}
       aria-label={`Start practicing ${subject.name}`}
     >
       {/* Subject Color Accent Glow */}
@@ -69,9 +67,9 @@ const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
               Curriculum
             </span>
             <span className="text-sm font-black text-foreground/90 tabular-nums">
-              {chapterCount > 0
-                ? `${chapterCount} Chapters - ${questionCount} Questions`
-                : `${questionCount} Questions`}
+              {subject.chapterCount > 0
+                ? `${subject.chapterCount} Chapters - ${subject.questionCount} Questions`
+                : `${subject.questionCount} Questions`}
             </span>
           </div>
 
@@ -83,8 +81,13 @@ const SubjectCard = ({ subject, onStart }: SubjectCardProps) => {
               boxShadow: `0 10px 20px -5px ${subject.color}50`,
             }}
           >
-            Practice
-            <LucideIcon name="ArrowRight" size={14} strokeWidth={3} />
+            {isLoading ? "Loading" : "Practice"}
+            <LucideIcon
+              name={isLoading ? "RefreshCcw" : "ArrowRight"}
+              size={14}
+              strokeWidth={3}
+              className={isLoading ? "animate-spin" : undefined}
+            />
           </div>
         </div>
       </div>

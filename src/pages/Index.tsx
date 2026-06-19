@@ -1,9 +1,9 @@
 import { useState, lazy, Suspense, useEffect, useMemo } from "react";
 import { Subject, ExamResult } from "@/types";
-import { subjects } from "@/data";
+import { loadSubject, subjectSummaries } from "@/data";
 import SubjectCard from "@/components/SubjectCard";
 import LucideIcon from "@/components/LucideIcon";
-import { getSubjectChapterCount, getSubjectQuestions } from "@/lib/subjectUtils";
+import { toast } from "@/hooks/use-toast";
 
 const ExamConfig = lazy(() => import("@/components/ExamConfig"));
 const ExamScreen = lazy(() => import("@/components/ExamScreen"));
@@ -65,19 +65,38 @@ const LoadingFallback = () => (
 
 const Index = () => {
   const [screen, setScreen] = useState<Screen>({ type: "home" });
+  const [loadingSubjectId, setLoadingSubjectId] = useState<string | null>(null);
 
   const curriculumStats = useMemo(() => {
-    const questionCount = subjects.reduce(
-      (total, subject) => total + getSubjectQuestions(subject).length,
+    const questionCount = subjectSummaries.reduce(
+      (total, subject) => total + subject.questionCount,
       0
     );
-    const chapterCount = subjects.reduce(
-      (total, subject) => total + getSubjectChapterCount(subject),
+    const chapterCount = subjectSummaries.reduce(
+      (total, subject) => total + subject.chapterCount,
       0
     );
 
     return { questionCount, chapterCount };
   }, []);
+
+  const handleStartSubject = async (subjectId: string) => {
+    setLoadingSubjectId(subjectId);
+
+    try {
+      const subject = await loadSubject(subjectId);
+      setScreen({ type: "config", subject });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Subject could not load",
+        description: "Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingSubjectId(null);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -200,7 +219,7 @@ const Index = () => {
 
             <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0">
               {[
-                { label: "Subjects", value: subjects.length },
+                { label: "Subjects", value: subjectSummaries.length },
                 { label: "Chapters", value: curriculumStats.chapterCount || "All" },
                 { label: "Questions", value: curriculumStats.questionCount },
               ].map((stat) => (
@@ -261,11 +280,12 @@ const Index = () => {
 
         {/* Subject grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 animate-fade-in pb-24">
-          {subjects.map((subject) => (
+          {subjectSummaries.map((subject) => (
             <SubjectCard
               key={subject.id}
               subject={subject}
-              onStart={(s) => setScreen({ type: "config", subject: s })}
+              isLoading={loadingSubjectId === subject.id}
+              onStart={handleStartSubject}
             />
           ))}
         </div>

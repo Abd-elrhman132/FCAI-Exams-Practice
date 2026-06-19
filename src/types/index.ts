@@ -1,4 +1,4 @@
-import { icons } from "lucide-react";
+import type { icons } from "lucide-react";
 
 export type IconName = keyof typeof icons;
 
@@ -27,6 +27,17 @@ export interface Subject {
   chapters?: Chapter[];
   selectedChapter?: Chapter;
   questions: Question[];
+}
+
+export interface SubjectSummary {
+  id: string;
+  name: string;
+  icon: IconName;
+  description: string;
+  color: string;
+  professor?: string;
+  chapterCount: number;
+  questionCount: number;
 }
 
 export type ExamAnswer = number | null;
