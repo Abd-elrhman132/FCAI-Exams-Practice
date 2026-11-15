@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { subjectSummaries } from ".";
 import { introToMultimedia } from "./introToMultimedia";
+import { fileManagement } from "./fileManagement";
 import { getSubjectChapterCount, getSubjectQuestions } from "@/lib/subjectUtils";
 
 const fullSubjects = [
   introToMultimedia,
+  fileManagement,
 ];
 
 describe("subject summaries", () => {

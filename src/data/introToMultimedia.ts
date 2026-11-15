@@ -1803,7 +1803,7 @@ export const introToMultimedia: Subject = {
   description:
     "Multimedia modalities, authoring tools, XR technologies, hypermedia, web standards, and digital media history.",
   color: "#8B5CF6",
-  professor: "Prof. Hossam Moftah",
+  professor: "Dr. Hossam Moftah",
   chapters,
   questions: chapters.flatMap((chapter) => chapter.questions),
 };
