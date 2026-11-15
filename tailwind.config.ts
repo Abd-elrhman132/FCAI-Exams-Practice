@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Playfair Display", "serif"],
+        heading: ["Plus Jakarta Sans", "DM Sans", "sans-serif"],
         body: ["DM Sans", "sans-serif"],
       },
       colors: {

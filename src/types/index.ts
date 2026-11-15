@@ -29,6 +29,13 @@ export interface Subject {
   questions: Question[];
 }
 
+export interface ChapterSummary {
+  id: string;
+  name: string;
+  questionCount: number;
+  description?: string;
+}
+
 export interface SubjectSummary {
   id: string;
   name: string;
@@ -38,6 +45,7 @@ export interface SubjectSummary {
   professor?: string;
   chapterCount: number;
   questionCount: number;
+  chapters?: ChapterSummary[];
 }
 
 export type ExamAnswer = number | null;

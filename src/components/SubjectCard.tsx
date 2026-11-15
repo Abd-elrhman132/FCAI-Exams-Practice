@@ -10,88 +10,130 @@ interface SubjectCardProps {
 
 const SubjectCard = ({ subject, isLoading = false, onStart }: SubjectCardProps) => {
   return (
-    <button
-      type="button"
+    <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-border bg-card p-1 transition-all duration-500",
-        "hover:border-primary/50 hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-primary/5",
-        "active:scale-[0.98] cursor-pointer flex flex-col h-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        "group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-card p-6 sm:p-7 transition-all duration-300",
+        "hover:shadow-2xl hover:-translate-y-1.5"
       )}
-      onClick={() => onStart(subject.id)}
-      disabled={isLoading}
-      aria-label={`Start practicing ${subject.name}`}
+      style={{
+        borderColor: `${subject.color}35`,
+      }}
     >
-      {/* Subject Color Accent Glow */}
+      {/* Top Colorful Accent Line */}
       <div
-        className="absolute -right-16 -top-16 h-48 w-48 rounded-full blur-[80px] transition-all duration-700 group-hover:opacity-60 group-hover:scale-150"
-        style={{ backgroundColor: subject.color, opacity: 0.1 }}
+        className="absolute top-0 left-0 right-0 h-1.5 rounded-t-3xl transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: `linear-gradient(90deg, transparent 5%, ${subject.color} 50%, transparent 95%)`,
+        }}
       />
 
-      {/* Light Sweep Animation */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 scale-150" />
-      </div>
+      {/* Subtle Ambient Radial Glow */}
+      <div
+        className="absolute -right-16 -top-16 h-48 w-48 rounded-full blur-[70px] pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+        style={{ backgroundColor: subject.color }}
+      />
 
-      <div className="relative flex flex-col h-full rounded-[1.4rem] bg-card/80 backdrop-blur-xl p-7 border border-border/50 shadow-inner">
-        <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-lg"
-          style={{
-            backgroundColor: `${subject.color}15`,
-            color: subject.color,
-            boxShadow: `0 8px 20px -4px ${subject.color}30`,
-          }}
-        >
-          <LucideIcon name={subject.icon} size={28} strokeWidth={2} />
+      {/* Main Content */}
+      <div>
+        {/* Top Meta Row */}
+        <div className="flex items-start justify-between gap-4 mb-5">
+          <div
+            className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg shrink-0"
+            style={{
+              background: `linear-gradient(135deg, ${subject.color}28, ${subject.color}10)`,
+              color: subject.color,
+              border: `1px solid ${subject.color}40`,
+              boxShadow: `0 10px 25px -5px ${subject.color}35`,
+            }}
+          >
+            <LucideIcon name={subject.icon} size={28} strokeWidth={2.2} />
+          </div>
+
+          <div className="flex flex-col items-end gap-1.5">
+            <span
+              className="font-mono text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg"
+              style={{
+                backgroundColor: `${subject.color}18`,
+                color: subject.color,
+                border: `1px solid ${subject.color}35`,
+              }}
+            >
+              {subject.id}
+            </span>
+            <span className="font-mono text-xs font-bold text-muted-foreground tabular-nums">
+              {subject.questionCount} Questions
+            </span>
+          </div>
         </div>
 
-        <h3 className="font-heading text-2xl font-black text-foreground mb-2 group-hover:text-primary transition-colors duration-300 tracking-tight">
+        {/* Title */}
+        <h3 className="font-heading text-2xl font-extrabold text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors">
           {subject.name}
         </h3>
 
+        {/* Professor Badge */}
         {subject.professor && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 mb-4 rounded-lg bg-secondary/50 border border-white/5 w-fit">
-            <LucideIcon name="GraduationCap" size={14} className="text-muted-foreground" />
-            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
-              {subject.professor}
-            </p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-secondary/60 border border-border/60 mb-4 text-xs font-medium text-foreground/85">
+            <LucideIcon name="GraduationCap" size={13} className="text-muted-foreground" />
+            <span>{subject.professor}</span>
           </div>
         )}
 
-        <p className="text-muted-foreground text-sm mb-8 flex-grow leading-relaxed font-medium line-clamp-3">
+        {/* Description */}
+        <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
           {subject.description}
         </p>
 
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50">
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 font-black">
-              Curriculum
+        {/* Lectures pill tag */}
+        {subject.chapterCount > 0 && (
+          <div className="mb-6 flex items-center gap-2 flex-wrap">
+            <span
+              className="text-[11px] font-bold px-2.5 py-1 rounded-md"
+              style={{
+                backgroundColor: `${subject.color}18`,
+                color: subject.color,
+              }}
+            >
+              {subject.chapterCount} Lectures Included
             </span>
-            <span className="text-sm font-black text-foreground/90 tabular-nums">
-              {subject.chapterCount > 0
-                ? `${subject.chapterCount} Chapters - ${subject.questionCount} Questions`
-                : `${subject.questionCount} Questions`}
+            <span className="text-[11px] font-mono text-muted-foreground">
+              Easy • Medium • Hard
             </span>
           </div>
-
-          <div
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-500 group-hover:gap-4 shadow-xl active:scale-95"
-            style={{
-              backgroundColor: subject.color,
-              color: "#fff",
-              boxShadow: `0 10px 20px -5px ${subject.color}50`,
-            }}
-          >
-            {isLoading ? "Loading" : "Practice"}
-            <LucideIcon
-              name={isLoading ? "RefreshCcw" : "ArrowRight"}
-              size={14}
-              strokeWidth={3}
-              className={isLoading ? "animate-spin" : undefined}
-            />
-          </div>
-        </div>
+        )}
       </div>
-    </button>
+
+      {/* Card Bottom / Action Row */}
+      <div className="flex items-center justify-between pt-5 border-t border-border/60 mt-auto">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <LucideIcon name="ListChecks" size={14} style={{ color: subject.color }} />
+          <span>Practice & Exam Modes</span>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => onStart(subject.id)}
+          disabled={isLoading}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:brightness-110 hover:gap-3 active:scale-95 cursor-pointer"
+          style={{
+            backgroundColor: subject.color,
+            boxShadow: `0 10px 25px -6px ${subject.color}60`,
+          }}
+        >
+          {isLoading ? (
+            <>
+              <LucideIcon name="RefreshCcw" size={14} className="animate-spin" />
+              <span>Loading</span>
+            </>
+          ) : (
+            <>
+              <span>Practice</span>
+              <LucideIcon name="ArrowRight" size={14} strokeWidth={2.5} />
+            </>
+          )}
+        </button>
+      </div>
+    </div>
   );
 };
 

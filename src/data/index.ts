@@ -2,58 +2,55 @@ import { Subject, SubjectSummary } from "@/types";
 
 export const subjectSummaries: SubjectSummary[] = [
   {
-    id: "it351",
-    name: "Computer Networking",
-    icon: "Network",
-    description: "Network protocols, architectures, and data communication.",
-    color: "#10B981",
-    professor: "Dr. Eissa Sabry",
-    chapterCount: 9,
-    questionCount: 260,
-  },
-  {
-    id: "CS251",
-    name: "Computer Graphics",
-    icon: "Shapes",
-    description: "Digital images, geometric primitives, transformations, curves, and splines.",
-    color: "#F59E0B",
-    professor: "Dr. Mohamed Salah",
-    chapterCount: 5,
-    questionCount: 90,
-  },
-  {
-    id: "cs211",
-    name: "Data Structures",
-    icon: "Database",
-    description: "Fundamental concepts of data organization and management.",
-    color: "#3B82F6",
-    professor: "Dr. Noha Yehia",
-    chapterCount: 10,
-    questionCount: 290,
-  },
-  {
-    id: "hu121",
-    name: "Social Context of Computing",
-    icon: "Globe",
+    id: "MM304",
+    name: "Intro to Multimedia",
+    icon: "Film",
     description:
-      "Impact of computing on society, ethics, diversity, cybersecurity, and digital culture.",
-    color: "#4F46E5",
-    professor: "Noha Shabriya",
-    chapterCount: 7,
-    questionCount: 210,
+      "Multimedia modalities, authoring tools, XR technologies, hypermedia, web standards, and digital media history.",
+    color: "#8B5CF6",
+    professor: "Prof. Hossam Moftah",
+    chapterCount: 4,
+    questionCount: 160,
+    chapters: [
+      {
+        id: "mm304-lecture-1",
+        name: "Lecture 1: Introduction to Multimedia",
+        questionCount: 40,
+        description: "Modalities, authoring tools, XR (AR/VR/MR), e-learning, animation, and technology timeline.",
+      },
+      {
+        id: "mm304-lecture-2",
+        name: "Lecture 2: Multimedia Software Tools & Graphics Data Representation",
+        questionCount: 40,
+        description: "Audio/video editing tools, 3D APIs, future trends, bit depth calculations, and LUTs.",
+      },
+      {
+        id: "mm304-lecture-3",
+        name: "Lecture 3: Image Formats, Color Science & Color Models",
+        questionCount: 40,
+        description: "GIF, JPEG, PNG, TIFF, optics, reflection, additive RGB and subtractive CMYK.",
+      },
+      {
+        id: "mm304-lecture-4",
+        name: "Lecture 4: Lossless Compression & Information Theory",
+        questionCount: 40,
+        description: "Entropy, self-information, RLC, Shannon-Fano algorithm, and Huffman coding.",
+      },
+    ],
   },
 ];
 
 const subjectLoaders: Record<string, () => Promise<Subject>> = {
-  it351: () => import("./computerNetworking").then((module) => module.computerNetworking),
-  CS251: () => import("./computerGraphics").then((module) => module.computerGraphics),
-  cs211: () => import("./dataStructures").then((module) => module.dataStructures),
-  hu121: () =>
-    import("./socialContextOfComputing").then((module) => module.socialContextOfComputing),
+  MM304: () => import("./introToMultimedia").then((module) => module.introToMultimedia),
+  mm304: () => import("./introToMultimedia").then((module) => module.introToMultimedia),
 };
 
 export async function loadSubject(subjectId: string) {
-  const loader = subjectLoaders[subjectId];
+  const normalizedId =
+    Object.keys(subjectLoaders).find(
+      (key) => key.toLowerCase() === subjectId.toLowerCase()
+    ) || subjectId;
+  const loader = subjectLoaders[normalizedId];
 
   if (!loader) {
     throw new Error(`Unknown subject: ${subjectId}`);
